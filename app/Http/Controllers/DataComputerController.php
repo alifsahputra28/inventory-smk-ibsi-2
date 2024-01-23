@@ -60,7 +60,9 @@ class DataComputerController extends Controller
 
     public function storeLaboratoryComputer(DataComputerRequest $request, LaboratoryRoom $laboratoryRoom)
     {
-        // dd($request->all());
+       try {
+        DB::beginTransaction();
+
         $image = $this->uploadImage($request, $path = 'public/data-computers/');
         $dataComputer =   DataComputer::create([
             'merk'  => $request->merk,
@@ -83,6 +85,12 @@ class DataComputerController extends Controller
             'date'                  => $request->date,
             'description'           => $request->description,
         ]);
+
+        DB::commit();
+    } catch (\Throwable $th) {
+        DB::rollBack();
+        return redirect()->back()->with('error', $th->getMessage());
+    }
 
         return redirect()->route('laboratoryComputer.index', $laboratoryRoom->id)->with('success', 'Create Data Success');
     }

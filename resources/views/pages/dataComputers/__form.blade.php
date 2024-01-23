@@ -120,7 +120,7 @@
                             id="computerNumber"
                             required
                             aria-describedby="computer_number"
-                            value="{{ ($computerInformation->id === null) ? Str::limit($computerNumber->computer_number, 4, $computerNumber->id + 2) : $computerInformation->computer_number}}"
+                            value="{{ ($computerInformation->computer_number !== null) ? Str::limit($computerNumber->computer_number, 4, $computerNumber->id + 2) : $computerInformation->computer_number}}"
                             {{-- value="{{ $computerInformation->computer_number}}" --}}
                             readonly
                         />
