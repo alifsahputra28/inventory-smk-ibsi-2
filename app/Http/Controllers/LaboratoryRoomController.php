@@ -23,7 +23,7 @@ class LaboratoryRoomController extends Controller
                 ->addColumn('action', function ($data) {
                     $id             = $data->id;
                     $url_edit       = route('laboratory-rooms.edit', $id);
-                    $url_show       = route('laboratory-rooms.show', $id);
+                    $url_show       = route('laboratoryComputer.index', $id);
                     $url_delete     = route('laboratory-rooms.destroy', $id);
 
                     $edit     = '<a href="' . $url_edit . '" class="dropdown-item" data-toggle="tooltip" title="Edit" data-bs-placement="top">Edit Data</a>';
@@ -53,7 +53,7 @@ class LaboratoryRoomController extends Controller
      */
     public function create()
     {
-        $latestIdLabRoom = LaboratoryRoom::latest()->first()->laboratory_number;
+        $latestIdLabRoom = (LaboratoryRoom::latest() === null) ? LaboratoryRoom::latest()->first()->laboratory_number : "LAB-001";
         $laboratoryRoom = new LaboratoryRoom;
        return view('pages.laboratoryRooms.create', compact('latestIdLabRoom','laboratoryRoom'));
     }
@@ -77,7 +77,7 @@ class LaboratoryRoomController extends Controller
      */
     public function show(LaboratoryRoom $laboratoryRoom)
     {
-        //
+      
     }
 
     /**
@@ -94,7 +94,10 @@ class LaboratoryRoomController extends Controller
      */
     public function update(Request $request, LaboratoryRoom $laboratoryRoom)
     {
-        //
+        $laboratoryRoom->update([
+            'name'      => $request->name
+        ]);
+        return redirect()->route('laboratory-rooms.index')->with('success', 'Update Data Success');
     }
 
     /**
@@ -104,4 +107,5 @@ class LaboratoryRoomController extends Controller
     {
         //
     }
+
 }
