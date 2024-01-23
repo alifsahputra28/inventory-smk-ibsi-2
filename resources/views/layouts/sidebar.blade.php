@@ -4,7 +4,7 @@
             <li class="nav-item">
                 <a href="../../index.html" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
-                        <img src="{{ asset('assets/img/logoSMK.jpg') }}" height="50" width="50"
+                        <img src="{{ asset('assets/img/logo-smk-ibnu-sina.png') }}" height="50" width="50"
                             alt="Volt Logo" />
                     </span>
                     <span class="mt-1 ms-1 bold fw-bold text-success sidebar-text">SMK IBNU SINA</span>
