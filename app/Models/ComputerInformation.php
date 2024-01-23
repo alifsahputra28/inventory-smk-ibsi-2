@@ -12,7 +12,7 @@ class ComputerInformation extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = 'computer_information';
-    protected $with = ['dataComputer'];
+    protected $with = ['dataComputer', 'laboratoryRoom'];
     /**
      * Get the dataComputer associated with the ComputerInformation
      *
@@ -21,5 +21,15 @@ class ComputerInformation extends Model
     public function dataComputer(): BelongsTo
     {
         return $this->belongsTo(DataComputer::class);
+    }
+
+    /**
+     * Get the laboratoryRoom that owns the ComputerInformation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function laboratoryRoom()
+    {
+        return $this->belongsTo(LaboratoryRoom::class, 'laboratory_room_id');
     }
 }

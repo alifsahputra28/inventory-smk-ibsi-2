@@ -135,7 +135,7 @@
                 >
                     <ul class="flex-column nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('dataComputer.index') }}">
                                 <span class="sidebar-text">Data Computers</span>
                             </a>
                         </li>

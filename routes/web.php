@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
     Route::resource('laboratory-rooms', LaboratoryRoomController::class)->except('show');
     
+    Route::get('laboratory-data-computers', [DataComputerController::class, 'index'])->name('dataComputer.index');
     Route::get('laboratory-create-computers/{laboratory_room}', [DataComputerController::class, 'indexComputerInLabor'])->name('laboratoryComputer.index');
     Route::get('laboratory-create-computers/{laboratory_room}/create', [DataComputerController::class, 'createLaboratoryComputer'])->name('laboratoryComputer.create');
     Route::post('laboratory-create-computers/{laboratory_room}', [DataComputerController::class, 'storeLaboratoryComputer'])->name('laboratoryComputer.store');

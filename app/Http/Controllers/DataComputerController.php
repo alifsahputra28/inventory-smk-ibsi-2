@@ -171,4 +171,48 @@ class DataComputerController extends Controller
             'message' => 'Deleted Data Success!.',
         ]);
     }
+
+
+    public function index(Request $request){
+        if ($request->ajax()) {
+            if(!empty($request->from_date)) {
+                $data = ComputerInformation::whereBetween('date', array($request->from_date, $request->to_date))->get();
+            } else {
+                $data = ComputerInformation::latest();
+            }
+            // $data = ComputerInformation::latest();
+            return DataTables::of($data)
+                ->addIndexColumn('DT_RowIndex')
+                ->addColumn('laboratoryRoom', function($data){
+                    return $data->laboratoryRoom->name;
+                })
+                ->addColumn('action', function ($data){
+                    $id             = $data->id;
+                    $laboratoryId   = $data->laboratory_room_id;
+                    $url_edit       = route('laboratoryComputer.edit', ['laboratory_room' => $laboratoryId, 'computer_information' => $id]);
+                    $url_show       = route('laboratoryComputer.show', ['laboratory_room' => $laboratoryId, 'computer_information' => $id]);
+                    $url_delete     = route('laboratoryComputer.destroy', $id);
+
+                    $edit     = '<a href="' . $url_edit . '" class="dropdown-item" data-toggle="tooltip" title="Edit" data-bs-placement="top">Edit Data</a>';
+                    $show    = '<a href="' . $url_show . '" class="dropdown-item" data-toggle="tooltip" title="Show" data-bs-placement="top">Show Data</a>';
+                    $delete    = '<a href="javascript:void(0)" id="' . $id . '" data-id="' . $url_delete . '" class="dropdown-item btn-delete" data-toggle="tooltip" title="Delete" data-bs-placement="top">Delete Data</a>';
+                    $button    = '<div class="dropup-center dropstart">
+                <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>' . $edit . '</li>
+                  <li>' . $show . '</li>
+                  <li>' . $delete . '</li>
+                </ul>
+              </div>';
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        $laboratoryRoom = LaboratoryRoom::latest()->get();
+        return view('pages.dataComputers.index', compact('laboratoryRoom'));
+    }
 }
