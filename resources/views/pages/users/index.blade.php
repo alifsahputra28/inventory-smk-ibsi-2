@@ -43,14 +43,10 @@
     </div>
 </div>
 
-<div class="row justify-content-end">
-    <div class="col-md-3">
-        <button type="button" class="btn btn-primary btn-sm">
-            Print <i class="ri-printer-fill"></i>
-        </button>
-    </div>
-    <div class="col-md-4 d-flex align-items-center mb-3">
-        <div class="input-group input-group-sm">
+<div class="row justify-content-end ">
+    <div class="col-md-5 mb-3 d-flex align-items-center">
+      <div class="d-flex align-items-center">
+        <div class="input-group input-group-sm flex-nowrap">
             <input
                 type="month"
                 class="form-control"
@@ -59,7 +55,7 @@
             />
         </div>
         <span class="fs-5 mx-2">-</span>
-        <div class="input-group input-group-sm">
+        <div class="input-group input-group-sm flex-nowrap">
             <input
                 type="month"
                 class="form-control"
@@ -67,32 +63,13 @@
                 aria-describedby="inputGroup-sizing-sm"
             />
         </div>
-    </div>
-    <div class="col-md-5">
-        <form action="#" method="GET">
-            <div class="input-group input-group-sm mb-3">
-                <select class="form-select" name="filter_merk" id="filter_merk">
-                    <option value="">Filter by Merk</option>
-                      {{-- @foreach ($uniqueMerk as $merk)
-                        <option value="{{ $merk }}" {{ request('filter_merk') == $merk ? 'selected' : '' }}>
-                          {{ $merk }}
-                        </option>
-                      @endforeach --}}
-                </select>
-                <input
-                    type="text"
-                    class="form-control"
-                    name="search_keyword"
-                    placeholder="Search by keyword"
-                    value="{{ request('search_keyword') }}"
-                />
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </form>
+      </div>
+        <button type="button" class="btn btn-primary ms-2 btn-sm">
+            Print <i class="ri-printer-fill"></i>
+        </button>
     </div>
 </div>
 
-<div class="row">
     <div class="card border-0 shadow mb-4">
         <div class="card-body">
             @if ($message = Session::get('success'))
@@ -116,7 +93,6 @@
             </div>
         </div>
     </div>
-</div>
 <script type="text/javascript">
     $(function () {
         var table = $(".table-users").DataTable({

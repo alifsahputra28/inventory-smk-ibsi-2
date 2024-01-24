@@ -42,8 +42,10 @@
     <body>
         @include('layouts.sidebar')
         <main class="content">
-            @include('sweetalert::alert') @include('layouts.navbar')
-            @yield('content') @include('layouts.footer')
+            @include('sweetalert::alert')
+            @include('layouts.navbar')
+            @yield('content')
+            @include('layouts.footer')
         </main>
 
         <!-- Core -->
