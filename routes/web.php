@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('dashboard');
 });
 // Route::resource('users', UserController::class);
 
@@ -32,7 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/tes', function(){
+    Route::get('/dashboard', function(){
         return view('pages.dashboard.index');
     })->name('dashboard');
     Route::resource('roles', RoleController::class);
