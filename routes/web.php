@@ -50,7 +50,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 
     Route::controller(DataSupportingDeviceController::class)->name('dataSupportingDevice.')->group(function(){
-        Route::get('data-supporting-device/{laboratory_room}', 'indexDataSupportingInLabor')->name('index');
+        Route::get('data-supporting-device', 'index')->name('index');
+        Route::get('data-supporting-device/{laboratory_room}', 'indexDataSupportingInLabor')->name('indexInLabour');
         Route::get('data-supporting-device/{laboratory_room}/create', 'createLaboratorySupportingDevice')->name('create');
         Route::post('data-supporting-device/{laboratory_room}', 'storeLaboratorySupportingDevice')->name('store');
         Route::get('data-supporting-device/{laboratory_room}/{supporting_device_information}/show', 'showLaboratorySupportingDevice')->name('show');

@@ -10,7 +10,7 @@ class SupportingDeviceInformation extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with = ['dataSupportingDevice'];
+    protected $with = ['dataSupportingDevice', 'laboratoryRoom'];
     /**
      * Get the supportingDevice that owns the SupportingDeviceInformation
      *
@@ -19,5 +19,15 @@ class SupportingDeviceInformation extends Model
     public function dataSupportingDevice(): BelongsTo
     {
         return $this->belongsTo(DataSupportingDevice::class);
+    }
+
+       /**
+     * Get the laboratoryRoom that owns the ComputerInformation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function laboratoryRoom():BelongsTo
+    {
+        return $this->belongsTo(LaboratoryRoom::class, 'laboratory_room_id');
     }
 }
