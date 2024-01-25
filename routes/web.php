@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DataComputerController;
+use App\Http\Controllers\LaboratoryComputerController;
 use App\Http\Controllers\LaboratoryRoomController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -37,6 +39,22 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('laboratory-rooms', LaboratoryRoomController::class)->except('show');
+    Route::resource('data-computers', DataComputerController::class);
+    // Route::resource('laboratory-computers', LaboratoryComputerController::class);
+    Route::get('get-data-computer/{dataComputer}', [LaboratoryComputerController::class,'getComputer'])->name('get.computer');
 
 
+
+    Route::controller(LaboratoryComputerController::class)->name('laboratory-computers.')->group(
+        function () {
+            Route::get('laboratory-computers', 'index')->name('index');
+            Route::get('laboratory-computers/{laboratory_room}/create', 'create')->name('create');
+            Route::post('laboratory-computers/{laboratory_room}', 'store')->name('store');
+            Route::get('laboratory-computers/{laboratory_computer}/edit', 'edit')->name('edit');
+            Route::patch('laboratory-computers/{laboratory_computer}', 'update')->name('update');
+            Route::get('laboratory-computers/{laboratory_computer}/show', 'show')->name('show');
+            Route::delete('laboratory-computers/{laboratory_computer}', 'destroy')->name('destroy');
+            Route::get('laboratory-computers/get-computers', 'getComputers')->name('get-computers');
+        }
+    );
 });

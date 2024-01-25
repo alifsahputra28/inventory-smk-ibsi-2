@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('laboratory_rooms', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('laboratory_number')->unique();
             $table->string('name');
+            $table->string('pic');
             $table->timestamps();
         });
     }

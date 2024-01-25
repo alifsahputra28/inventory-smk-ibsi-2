@@ -49,7 +49,7 @@
                 </a>
             </li>
 
-            {{-- <li class="nav-item">
+            <li class="nav-item">
                 <span
                     class="nav-link collapsed d-flex justify-content-between align-items-center"
                     data-bs-toggle="collapse"
@@ -84,7 +84,7 @@
                 >
                     <ul class="flex-column nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('laboratory-computers.index') }}">
                                 <span class="sidebar-text"
                                     >Laboratory Computer</span
                                 >
@@ -99,7 +99,7 @@
                         </li>
                     </ul>
                 </div>
-            </li> --}}
+            </li>
 
 
             <li class="nav-item">
@@ -137,12 +137,12 @@
                 >
                     <ul class="flex-column nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dataComputer.index') }}">
+                            <a class="nav-link" href="{{ route('data-computers.index') }}">
                                 <span class="sidebar-text">Data Computers</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dataSupportingDevice.index') }}">
+                            <a class="nav-link" href="">
                                 <span class="sidebar-text"
                                     >Data Supporting De...</span
                                 >
