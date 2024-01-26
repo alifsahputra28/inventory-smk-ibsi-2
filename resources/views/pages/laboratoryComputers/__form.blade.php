@@ -217,42 +217,6 @@
         </div>
     </div>
 </div>
-{{-- <div class="card border-0 shadow components-section mt-3">
-    <div class="card-body">
-        <h2 class="h5 mb-3">Laboratory Rooms</h2>
-        <div class="row">
-            <div class="col">
-                <div class="mb-4">
-                    <label for="laboratoryNumber">Laboratory Number</label>
-                    <input
-                        type="text"
-                        class="form-control @error('laboratory_number') is-invalid @enderror"
-                        id="laboratoryNumber"
-                        name="laboratory_number"
-                        required
-                        aria-describedby="laboratoryNumber"
-                    />
-                </div>
-            </div>
-            <div class="col">
-                <div class="mb-4">
-                    <label for="laboratoryName">Laboratory Name</label>
-                    <input
-                        type="text"
-                        class="form-control @error('laboratory_name') is-invalid @enderror"
-                        id="laboratoryName"
-                        name="laboratory_name"
-                        required
-                        aria-describedby="laboratoryName"
-                    />
-                </div>
-            </div>
-        </div>
-      
-
-
-    </div>
-</div> --}}
 
 {{-- Modal Data Computers --}}
 <div

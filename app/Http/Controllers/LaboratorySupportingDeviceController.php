@@ -1,0 +1,147 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\LaboratorySupportingDeviceRequest;
+use App\Models\DataComputer;
+use App\Models\DataSupportingDevice;
+use App\Models\LaboratoryRoom;
+use App\Models\LaboratorySupportingDevice;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+
+class LaboratorySupportingDeviceController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            // $data = DB::table('users')->select('id', 'name', 'email')->orderBy('created_at', 'DESC');
+            $data = LaboratorySupportingDevice::latest();
+            return DataTables::of($data)
+                ->addIndexColumn('DT_RowIndex')
+                ->addColumn('action', function ($data) {
+                    $id             = $data->id;
+                    $url_edit       = route('laboratory-supporting-devices.edit', $id);
+                    $url_show       = route('laboratory-supporting-devices.show', $id);
+                    $url_delete     = route('laboratory-supporting-devices.destroy', $id);
+
+                    $edit     = '<a href="' . $url_edit . '" class="dropdown-item" data-toggle="tooltip" title="Edit" data-bs-placement="top">Edit Data</a>';
+                    $show    = '<a href="' . $url_show . '" class="dropdown-item" data-toggle="tooltip" title="Show" data-bs-placement="top">Show Data</a>';
+                    $delete    = '<a href="javascript:void(0)" id="' . $id . '" data-id="' . $url_delete . '" class="dropdown-item btn-delete" data-toggle="tooltip" title="Delete" data-bs-placement="top">Delete Data</a>';
+                    $button    = '<div class="dropup-center dropstart">
+                <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>' . $edit . '</li>
+                  <li>' . $show . '</li>
+                  <li>' . $delete . '</li>
+                </ul>
+              </div>';
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        $laboratoryRooms = LaboratoryRoom::latest()->get();
+        return view('pages.laboratorySupportingDevices.index', compact('laboratoryRooms'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(LaboratoryRoom $laboratoryRoom)
+    {
+        $dataSupportingDevices = DataSupportingDevice::latest()->get();
+        $laboratorySupportingDevice = new LaboratorySupportingDevice();
+        return view('pages.laboratorySupportingDevices.create', compact('laboratoryRoom', 'dataSupportingDevices', 'laboratorySupportingDevice'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(LaboratorySupportingDeviceRequest $request, LaboratoryRoom $laboratoryRoom)
+    {
+
+        for ($i = 1; $i <= $request->amount; $i++) {
+            $idGenerator = IdGenerator::generate(['table' => 'laboratory_supporting_devices', 'field' => 'supporting_device_number', 'length' => 9, 'prefix' => 'DEVICE']);
+            LaboratorySupportingDevice::create([
+                'laboratory_room_id'      => $laboratoryRoom->id,
+                'supporting_device_number'      => $idGenerator,
+                'condition'      => $request->condition,
+                'date'      => $request->date,
+                'description'      => $request->description,
+                'name'      => $request->name,
+                'merk'      => $request->merk,
+                'model_or_type'      => $request->model_or_type,
+            ]);
+        }
+        return redirect()->route('laboratory-supporting-devices.index')->with('success', 'Create Data Success');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(LaboratorySupportingDevice $laboratorySupportingDevice)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(LaboratorySupportingDevice $laboratorySupportingDevice)
+    {
+        $dataSupportingDevices = DataSupportingDevice::latest()->get();
+        return view('pages.laboratorySupportingDevices.edit', compact('dataSupportingDevices', 'laboratorySupportingDevice'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(LaboratorySupportingDeviceRequest $request, LaboratorySupportingDevice $laboratorySupportingDevice)
+    {
+        $laboratorySupportingDevice->update([
+            'laboratory_room_id'      => $laboratorySupportingDevice->laboratory_room_id,
+            'supporting_device_number'      => $laboratorySupportingDevice->supporting_device_number,
+            'condition'      => $request->condition,
+            'date'      => $request->date,
+            'description'      => $request->description,
+            'name'      => $request->name,
+            'merk'      => $request->merk,
+            'model_or_type'      => $request->model_or_type,
+        ]);
+        return redirect()->route('laboratory-supporting-devices.index')->with('success', 'Update Data Success');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(LaboratorySupportingDevice $laboratorySupportingDevice)
+    {
+        $laboratorySupportingDevice->delete();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Data User Berhasi Di Hapus'
+        ]);
+    }
+
+    public function getSupportingDevice(DataSupportingDevice $dataSupportingDevice)
+    {
+        if ($dataSupportingDevice) {
+            return response()->json([
+                'name' => $dataSupportingDevice->name,
+                'merk' => $dataSupportingDevice->merk,
+                'model_or_type' => $dataSupportingDevice->model_or_type,
+            ]);
+        } else {
+            return response()->json(['error' => 'Computer not found.']);
+        }
+    }
+}

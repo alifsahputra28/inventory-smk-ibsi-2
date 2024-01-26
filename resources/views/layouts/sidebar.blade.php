@@ -91,7 +91,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('laboratory-supporting-devices.index') }}">
                                 <span class="sidebar-text"
                                     >Laboratory Suppo...</span
                                 >
@@ -142,7 +142,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('data-supporting-devices.index') }}">
                                 <span class="sidebar-text"
                                     >Data Supporting De...</span
                                 >

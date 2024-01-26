@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\DataComputerController;
+use App\Http\Controllers\DataSupportingDeviceController;
 use App\Http\Controllers\LaboratoryComputerController;
 use App\Http\Controllers\LaboratoryRoomController;
+use App\Http\Controllers\LaboratorySupportingDeviceController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -41,9 +43,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('laboratory-rooms', LaboratoryRoomController::class)->except('show');
     Route::resource('data-computers', DataComputerController::class);
     // Route::resource('laboratory-computers', LaboratoryComputerController::class);
+    // Route::resource('data-supporting-devices', DataSupportingDeviceController::class);
+    
     Route::get('get-data-computer/{dataComputer}', [LaboratoryComputerController::class,'getComputer'])->name('get.computer');
-
-
+   
 
     Route::controller(LaboratoryComputerController::class)->name('laboratory-computers.')->group(
         function () {
@@ -54,7 +57,33 @@ Route::group(['middleware' => ['auth']], function() {
             Route::patch('laboratory-computers/{laboratory_computer}', 'update')->name('update');
             Route::get('laboratory-computers/{laboratory_computer}/show', 'show')->name('show');
             Route::delete('laboratory-computers/{laboratory_computer}', 'destroy')->name('destroy');
-            Route::get('laboratory-computers/get-computers', 'getComputers')->name('get-computers');
+            // Route::get('laboratory-computers/get-computers', 'getComputers')->name('get-computers');
         }
     );
+
+
+    Route::controller(DataSupportingDeviceController::class)->name('data-supporting-devices.')->group(function(){
+        Route::get('data-supporting-devices', 'index')->name('index');
+        Route::get('data-supporting-devices/create', 'create')->name('create');
+        Route::post('data-supporting-devices', 'store')->name('store');
+        Route::get('data-supporting-devices/{data_supporting_device}/edit', 'edit')->name('edit');
+        Route::patch('data-supporting-devices/{data_supporting_device}', 'update')->name('update');
+        Route::get('data-supporting-devices/{data_supporting_device}/show', 'show')->name('show');
+        Route::delete('data-supporting-devices/{data_supporting_device}', 'destroy')->name('destroy');
+    });
+
+    Route::controller(LaboratorySupportingDeviceController::class)->name('laboratory-supporting-devices.')->group(
+        function () {
+            Route::get('laboratory-supporting-devices', 'index')->name('index');
+            Route::get('laboratory-supporting-devices/{laboratory_room}/create', 'create')->name('create');
+            Route::post('laboratory-supporting-devices/{laboratory_room}', 'store')->name('store');
+            Route::get('laboratory-supporting-devices/{laboratory_supporting_device}/edit', 'edit')->name('edit');
+            Route::patch('laboratory-supporting-devices/{laboratory_supporting_device}', 'update')->name('update');
+            Route::get('laboratory-supporting-devices/{laboratory_supporting_device}/show', 'show')->name('show');
+            Route::delete('laboratory-supporting-devices/{laboratory_supporting_device}', 'destroy')->name('destroy');
+            Route::get('get-data-supporting-devices/{data_supporting_device}', 'getSupportingDevice')->name('get.supportingDevice');
+        }
+    );
+    
+    
 });

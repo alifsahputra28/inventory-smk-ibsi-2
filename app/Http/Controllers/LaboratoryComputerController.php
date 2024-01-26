@@ -8,6 +8,7 @@ use App\Models\LaboratoryComputer;
 use App\Models\LaboratoryRoom;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class LaboratoryComputerController extends Controller
@@ -47,7 +48,12 @@ class LaboratoryComputerController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        $laboratoryRooms = LaboratoryRoom::latest()->get();
+        if (Auth::user()->hasRole('Admin')) {
+            $laboratoryRooms = LaboratoryRoom::latest()->get();
+        }elseif(Auth::user()->hasRole('Ka.Lab RPL')){
+            $laboratoryRooms = LaboratoryRoom::where('laboratory_number','Lab-001')->latest()->get();
+        }
+
         return view('pages.laboratoryComputers.index', compact('laboratoryRooms'));
     }
 
