@@ -9,6 +9,7 @@ use App\Models\LaboratoryRoom;
 use App\Models\LaboratorySupportingDevice;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class LaboratorySupportingDeviceController extends Controller
@@ -18,9 +19,69 @@ class LaboratorySupportingDeviceController extends Controller
      */
     public function index(Request $request)
     {
+        $CanRPL = Auth::user()->can('Lab RPL');
+        $CanAkuntansi = Auth::user()->can('Lab Akuntansi');
+        $CanAdministrasiPerkantoran = Auth::user()->can('Lab Administrasi Perkantoran');
+        $CanPemasaran = Auth::user()->can('Lab Pemasaran');
         if ($request->ajax()) {
-            // $data = DB::table('users')->select('id', 'name', 'email')->orderBy('created_at', 'DESC');
-            $data = LaboratorySupportingDevice::latest();
+            // $data = LaboratorySupportingDevice::latest();
+            if (!empty($request->from_date)) {
+                if ($CanRPL) {
+                    $data = LaboratorySupportingDevice::whereNotIn('condition', ['Outdated'])->whereBetween('date', array($request->from_date, $request->to_date))
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-001');
+                        })
+                        ->get();
+                } elseif ($CanAkuntansi) {
+                    $data = LaboratorySupportingDevice::whereNotIn('condition', ['Outdated'])->whereBetween('date', array($request->from_date, $request->to_date))
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-002');
+                        })
+                        ->get();
+                } elseif ($CanAdministrasiPerkantoran) {
+                    $data = LaboratorySupportingDevice::whereNotIn('condition', ['Outdated'])->whereBetween('date', array($request->from_date, $request->to_date))
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-003');
+                        })
+                        ->get();
+                } elseif ($CanPemasaran) {
+                    $data = LaboratorySupportingDevice::whereNotIn('condition', ['Outdated'])->whereBetween('date', array($request->from_date, $request->to_date))
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-004');
+                        })
+                        ->get();
+                } else {
+                    $data = LaboratorySupportingDevice::whereNotIn('condition', ['Outdated'])->whereBetween('date', array($request->from_date, $request->to_date))->get();
+                }
+            } else {
+                if ($CanRPL) {
+                    $data = LaboratorySupportingDevice::latest()
+                        ->whereNotIn('condition', ['Outdated'])
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-001');
+                        });
+                } elseif ($CanAkuntansi) {
+                    $data = LaboratorySupportingDevice::latest()
+                        ->whereNotIn('condition', ['Outdated'])
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-002');
+                        });
+                } elseif ($CanAdministrasiPerkantoran) {
+                    $data = LaboratorySupportingDevice::latest()
+                        ->whereNotIn('condition', ['Outdated'])
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-003');
+                        });
+                } elseif ($CanPemasaran) {
+                    $data = LaboratorySupportingDevice::latest()
+                        ->whereNotIn('condition', ['Outdated'])
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-004');
+                        });
+                } else {
+                    $data = LaboratorySupportingDevice::latest()->whereNotIn('condition', ['Outdated']);
+                }
+            }
             return DataTables::of($data)
                 ->addIndexColumn('DT_RowIndex')
                 ->addColumn('action', function ($data) {
@@ -48,8 +109,22 @@ class LaboratorySupportingDeviceController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+
+        if ($CanRPL) {
+            $laboratoryRoomsId = LaboratoryRoom::where('laboratory_number', 'Lab-001')->first()->id;
+        } elseif ($CanAkuntansi) {
+            $laboratoryRoomsId = LaboratoryRoom::where('laboratory_number', 'Lab-002')->first()->id;
+        } elseif ($CanAdministrasiPerkantoran) {
+            $laboratoryRoomsId = LaboratoryRoom::where('laboratory_number', 'Lab-003')->first()->id;
+        } elseif ($CanPemasaran) {
+            $laboratoryRoomsId = LaboratoryRoom::where('laboratory_number', 'Lab-004')->first()->id;
+        } else {
+            $laboratoryRoomsId = '';
+        }
+
         $laboratoryRooms = LaboratoryRoom::latest()->get();
-        return view('pages.laboratorySupportingDevices.index', compact('laboratoryRooms'));
+
+        return view('pages.laboratorySupportingDevices.index', compact('laboratoryRooms', 'laboratoryRoomsId'));
     }
 
     /**

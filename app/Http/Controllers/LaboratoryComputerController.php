@@ -19,10 +19,67 @@ class LaboratoryComputerController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            // $data = DB::table('users')->select('id', 'name', 'email')->orderBy('created_at', 'DESC');
-            $data = LaboratoryComputer::latest();
+            // $data = LaboratoryComputer::latest();
+            if (!empty($request->from_date)) {
+                if(Auth::user()->can('Lab RPL')){
+                    $data = LaboratoryComputer::whereBetween('date', array($request->from_date, $request->to_date))
+                    ->whereHas('laboratoryRoom', function ($query) {
+                        $query->where('laboratory_number', 'Lab-001');
+                    })
+                    ->get();
+                }elseif(Auth::user()->can('Lab Akuntansi')){
+                    $data = LaboratoryComputer::whereBetween('date', array($request->from_date, $request->to_date))
+                    ->whereHas('laboratoryRoom', function ($query) {
+                        $query->where('laboratory_number', 'Lab-002');
+                    })
+                    ->get();
+                }elseif(Auth::user()->can('Lab Administrasi Perkantoran')){
+                    $data = LaboratoryComputer::whereBetween('date', array($request->from_date, $request->to_date))
+                    ->whereHas('laboratoryRoom', function ($query) {
+                        $query->where('laboratory_number', 'Lab-003');
+                    })
+                    ->get();
+                }elseif(Auth::user()->can('Lab Pemasaran')){
+                    $data = LaboratoryComputer::whereBetween('date', array($request->from_date, $request->to_date))
+                    ->whereHas('laboratoryRoom', function ($query) {
+                        $query->where('laboratory_number', 'Lab-004');
+                    })
+                    ->get();
+                }else{
+                    $data = LaboratoryComputer::whereBetween('date', array($request->from_date, $request->to_date))
+                    ->get();
+                }
+              
+            } else {
+                if (Auth::user()->can('Lab RPL')) {
+                    $data = LaboratoryComputer::latest()
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-001');
+                        });
+                } elseif (Auth::user()->can('Lab Akuntansi')) {
+                    $data = LaboratoryComputer::latest()
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-002');
+                        });
+                } elseif (Auth::user()->can('Lab Administrasi Perkantoran')) {
+                    $data = LaboratoryComputer::latest()
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-003');
+                        });
+                } elseif (Auth::user()->can('Lab Pemasaran')) {
+                    $data = LaboratoryComputer::latest()
+                        ->whereHas('laboratoryRoom', function ($query) {
+                            $query->where('laboratory_number', 'Lab-004');
+                        });
+                } else {
+                    $data = LaboratoryComputer::latest();
+                }
+            }
             return DataTables::of($data)
                 ->addIndexColumn('DT_RowIndex')
+                ->addColumn('LaboratoryRoom', function ($data) {
+                    return  $data->laboratoryRoom->name;
+                })
                 ->addColumn('action', function ($data) {
                     $id             = $data->id;
                     $url_edit       = route('laboratory-computers.edit', $id);
@@ -48,13 +105,22 @@ class LaboratoryComputerController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        if (Auth::user()->hasRole('Admin')) {
-            $laboratoryRooms = LaboratoryRoom::latest()->get();
-        }elseif(Auth::user()->hasRole('Ka.Lab RPL')){
-            $laboratoryRooms = LaboratoryRoom::where('laboratory_number','Lab-001')->latest()->get();
+
+        if (Auth::user()->can('Lab RPL')) {
+            $laboratoryRoomsId = LaboratoryRoom::where('laboratory_number', 'Lab-001')->first()->id;
+        } elseif (Auth::user()->can('Lab Akuntansi')) {
+            $laboratoryRoomsId = LaboratoryRoom::where('laboratory_number', 'Lab-002')->first()->id;
+        } elseif (Auth::user()->can('Lab Administrasi Perkantoran')) {
+            $laboratoryRoomsId = LaboratoryRoom::where('laboratory_number', 'Lab-003')->first()->id;
+        } elseif (Auth::user()->can('Lab Pemasaran')) {
+            $laboratoryRoomsId = LaboratoryRoom::where('laboratory_number', 'Lab-004')->first()->id;
+        } else {
+            $laboratoryRoomsId = '';
         }
 
-        return view('pages.laboratoryComputers.index', compact('laboratoryRooms'));
+        $laboratoryRooms = LaboratoryRoom::latest()->get();
+
+        return view('pages.laboratoryComputers.index', compact('laboratoryRooms', 'laboratoryRoomsId'));
     }
 
     /**
@@ -136,7 +202,7 @@ class LaboratoryComputerController extends Controller
      */
     public function destroy(LaboratoryComputer $laboratoryComputer)
     {
-       $laboratoryComputer->delete();
+        $laboratoryComputer->delete();
 
         return response()->json([
             'success'   => true,

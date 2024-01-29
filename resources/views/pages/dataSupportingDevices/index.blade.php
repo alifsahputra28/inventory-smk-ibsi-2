@@ -71,6 +71,7 @@
                 </thead>
                 <tbody class="text-center"></tbody>
             </table>
+        </div>
     </div>
 </div>
 

@@ -10,5 +10,7 @@ class LaboratoryRoom extends Model
 {
     use HasFactory, UUIDAsPrimaryKey;
     protected $guarded = [];
+    
+    
 
 }

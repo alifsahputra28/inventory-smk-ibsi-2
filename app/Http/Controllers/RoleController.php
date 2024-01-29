@@ -66,11 +66,17 @@ class RoleController extends Controller
         $permissionDashboard = Permission::take(1)->get();
         $permissionRoles = Permission::skip(1)->take(4)->get();
         $permissionUsers = Permission::skip(5)->take(4)->get();
+        $permissionLaboratoryRoom = Permission::skip(9)->take(4)->get();
+        $permissionDataComputer = Permission::skip(13)->take(4)->get();
+        $permissionDataSupportingDevice = Permission::skip(17)->take(4)->get();
+        $permissionLaboratoryComputer = Permission::skip(21)->take(4)->get();
+        $permissionLaboratorySupportingDevice = Permission::skip(25)->take(4)->get();
+        $permissionOther = Permission::skip(29)->take(4)->get();
         $role = new Role();
         $rolePermissions = [];
         // dd($permissionRoles);
         $permission = Permission::get();
-        return view('pages.roles.create',compact('permission','permissionDashboard','permissionRoles','permissionUsers', 'role', 'rolePermissions'));
+        return view('pages.roles.create',compact('permission','permissionDashboard','permissionRoles','permissionUsers', 'role', 'rolePermissions', 'permissionLaboratoryRoom', 'permissionDataComputer', 'permissionDataSupportingDevice', 'permissionLaboratoryComputer', 'permissionLaboratorySupportingDevice', 'permissionOther'));
     }
     
     /**
@@ -81,6 +87,7 @@ class RoleController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
@@ -104,11 +111,17 @@ class RoleController extends Controller
         $permissionDashboard = Permission::take(1)->get();
         $permissionRoles = Permission::skip(1)->take(4)->get();
         $permissionUsers = Permission::skip(5)->take(4)->get();
+        $permissionLaboratoryRoom = Permission::skip(9)->take(4)->get();
+        $permissionDataComputer = Permission::skip(13)->take(4)->get();
+        $permissionDataSupportingDevice = Permission::skip(17)->take(4)->get();
+        $permissionLaboratoryComputer = Permission::skip(21)->take(4)->get();
+        $permissionLaboratorySupportingDevice = Permission::skip(25)->take(4)->get();
+        $permissionOther = Permission::skip(29)->take(4)->get();
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
         ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
         ->all();
 
-        return view('pages.roles.show',compact('role','rolePermissions', 'permissionDashboard', 'permissionRoles', 'permissionUsers'));
+        return view('pages.roles.show',compact('role','rolePermissions', 'permissionDashboard', 'permissionRoles', 'permissionUsers', 'permissionLaboratoryRoom', 'permissionDataComputer', 'permissionDataSupportingDevice', 'permissionLaboratoryComputer', 'permissionLaboratorySupportingDevice', 'permissionOther'));
     }
     
     /**
@@ -124,11 +137,17 @@ class RoleController extends Controller
         $permissionDashboard = Permission::take(1)->get();
         $permissionRoles = Permission::skip(1)->take(4)->get();
         $permissionUsers = Permission::skip(5)->take(4)->get();
+        $permissionLaboratoryRoom = Permission::skip(9)->take(4)->get();
+        $permissionDataComputer = Permission::skip(13)->take(4)->get();
+        $permissionDataSupportingDevice = Permission::skip(17)->take(4)->get();
+        $permissionLaboratoryComputer = Permission::skip(21)->take(4)->get();
+        $permissionLaboratorySupportingDevice = Permission::skip(25)->take(4)->get();
+        $permissionOther = Permission::skip(29)->take(4)->get();
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
     
-        return view('pages.roles.edit',compact('role','permission','rolePermissions', 'permissionDashboard', 'permissionRoles','permissionUsers'));
+        return view('pages.roles.edit',compact('role','permission','rolePermissions', 'permissionDashboard', 'permissionRoles','permissionUsers', 'permissionLaboratoryRoom', 'permissionDataComputer', 'permissionDataSupportingDevice', 'permissionLaboratoryComputer', 'permissionLaboratorySupportingDevice', 'permissionOther'));
     }
     
     /**
