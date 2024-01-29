@@ -69,7 +69,7 @@ class LaboratoryRoomController extends Controller
             'name'      => $request->name,
             'pic'      => $request->pic
         ]);
-        return redirect()->route('laboratory-rooms.index')->with('success', 'Create Data Success');
+        return redirect()->route('laboratory-rooms.index')->with('success', 'Data Saved Successfully');
     }
 
     /**
@@ -98,7 +98,7 @@ class LaboratoryRoomController extends Controller
             'name'      => $request->name,
             'pic'      => $request->pic
         ]);
-        return redirect()->route('laboratory-rooms.index')->with('success', 'Update Data Success');
+        return redirect()->route('laboratory-rooms.index')->with('success', 'Data Update Successfully');
     }
 
     /**
@@ -110,7 +110,7 @@ class LaboratoryRoomController extends Controller
 
         return response()->json([
             'success'   => true,
-            'message'   => 'Data User Berhasi Di Hapus'
+            'message'   => 'Data Deleted Successfully'
         ]);
     }
 
