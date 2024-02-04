@@ -5,6 +5,8 @@ use App\Http\Controllers\DataSupportingDeviceController;
 use App\Http\Controllers\LaboratoryComputerController;
 use App\Http\Controllers\LaboratoryRoomController;
 use App\Http\Controllers\LaboratorySupportingDeviceController;
+use App\Http\Controllers\OutdatedComputerController;
+use App\Http\Controllers\OutdatedSupportingDeviceController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -84,6 +86,14 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('get-data-supporting-devices/{data_supporting_device}', 'getSupportingDevice')->name('get.supportingDevice');
         }
     );
+
+
+    Route::controller(OutdatedComputerController::class)->name('data-outdated-computers.')->group(function(){
+        Route::get('data-outdated-computers', 'index')->name('index');
+    });
+    Route::controller(OutdatedSupportingDeviceController::class)->name('data-outdated-supporting-device.')->group(function(){
+        Route::get('data-outdated-supporting-device', 'index')->name('index');
+    });
     
     
 });
