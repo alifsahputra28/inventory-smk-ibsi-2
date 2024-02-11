@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main')
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -43,21 +45,6 @@
     </div>
 </div>
 
-<div class="row">
-  <div class="col-md-6 offset-md-6">
-    <form action="{{ route('data-computers.index') }}" method="GET">
-        <div class="input-group input-group-sm mb-3">
-            <select class="form-select" name="filter_merk" id="filter_merk">
-                <option value="">Filter by Merk</option>
-             
-            </select>
-            <input type="text" class="form-control" name="search_keyword" placeholder="Search by keyword" value="{{ request('search_keyword') }}">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-    </form>
-  </div>
-</div>
-
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         @if ($message = Session::get('success'))
@@ -66,7 +53,9 @@
         </div>
         @endif
         <div class="table-responsive">
-            <table class="table-data-computers table-centered table-nowrap mb-0">
+            <table
+                class="table-data-computers table-centered table-nowrap mb-0"
+            >
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
