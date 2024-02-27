@@ -62,7 +62,7 @@
             <div class="col-md-2">
                 <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" readonly />
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <button type="button" name="filter" id="filter" class="btn btn-primary me-2">Filter</button>
                 <button type="button" name="refresh" id="refresh" class="btn btn-secondary">Refresh</button>
             </div>
@@ -80,12 +80,10 @@
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">LABORATORY ROOM</th>
+                            <th class="text-center">LAB ROOM</th>
                             <th class="text-center">COMPUTER NUMBER</th>
                             <th class="text-center">MERK</th>
                             <th class="text-center">MODEL</th>
-                            <th class="text-center">PROCESSOR</th>
-                            <th class="text-center">VGA</th>
                             <th class="text-center">RAM</th>
                             <th class="text-center">DISK SIZE</th>
                             <th class="text-center">CONDITION</th>
@@ -167,8 +165,6 @@
                 { data: "computer_number", name: "computer_number" },
                 { data: "merk", name: "merk" },
                 { data: "model", name: "model" },
-                { data: "processor", name: "processor" },
-                { data: "vga", name: "vga" },
                 { data: "ram", name: "ram" },
                 { data: "disk_size", name: "disk_size" },
                 { data: "condition", name: "condition" },

@@ -56,7 +56,7 @@
                 <div class="col-md-2">
                     <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" readonly />
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <button type="button" name="filter" id="filter" class="btn btn-primary me-2">Filter</button>
                     <button type="button" name="refresh" id="refresh" class="btn btn-secondary">Refresh</button>
                 </div>
