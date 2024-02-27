@@ -53,7 +53,7 @@
                 <span
                     class="nav-link collapsed d-flex justify-content-between align-items-center"
                     data-bs-toggle="collapse"
-                    data-bs-target="#submenu-laboratory-inventories"
+                    data-bs-target="#submenu-outdated-inventories"
                 >
                     <span>
                         <span class="sidebar-icon">
@@ -79,7 +79,7 @@
                 <div
                     class="multi-level collapse"
                     role="list"
-                    id="submenu-laboratory-inventories"
+                    id="submenu-outdated-inventories"
                     aria-expanded="false"
                 >
                     <ul class="flex-column nav">
@@ -93,7 +93,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('data-outdated-supporting-device.index') }}">
                                 <span class="sidebar-text"
-                                    >Outdated Supporting <br> Devices</span
+                                    >Outdated Support...</span
                                 >
                             </a>
                         </li>
@@ -145,7 +145,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('laboratory-supporting-devices.index') }}">
                                 <span class="sidebar-text"
-                                    >Laboratory Suppo...</span
+                                    >Laboratory Support...</span
                                 >
                             </a>
                         </li>
