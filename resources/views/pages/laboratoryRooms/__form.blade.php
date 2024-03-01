@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12">
         <div class="mb-4">
-            <label for="laboratoryNumber">Laboratory Number </label>
+            <label for="laboratoryNumber">Laboratory Number</label>
             <input
                 type="text"
                 class="form-control @error('laboratory_number') is-invalid @enderror"

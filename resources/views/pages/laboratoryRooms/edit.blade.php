@@ -56,7 +56,8 @@
                     method="POST"
                     enctype="multipart/form-data"
                 >
-                    @csrf @method('PATCH')
+                    @csrf 
+                    @method('PATCH')
                     @include('pages.laboratoryRooms.__form')
                     <div class="mt-3">
                         <button
