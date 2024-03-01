@@ -77,7 +77,7 @@ class DataComputerController extends Controller
             'image'         => $image->hashName(),
 
         ]);
-        return redirect()->route('data-computers.index')->with('success', 'Create Data Success');
+        return redirect()->route('data-computers.index')->with('success', 'Data Saved Successfully');
     }
 
     /**
@@ -124,7 +124,7 @@ class DataComputerController extends Controller
             'ram'           => $request->ram,
             'disk_size'     => $request->disk_size,
         ]);
-        return redirect()->route('data-computers.index')->with('success', 'Update Data Success');
+        return redirect()->route('data-computers.index')->with('success', 'Data Update Successfully');
     
     }
 
@@ -137,7 +137,7 @@ class DataComputerController extends Controller
         Storage::disk('local')->delete('public/data-computers/' . basename($dataComputer->image));
         return response()->json([
             'success'   => true,
-            'message'   => 'Data Berhasi Di Hapus'
+            'message'   => 'Data Deleted Successfully'
         ]);
     }
 }

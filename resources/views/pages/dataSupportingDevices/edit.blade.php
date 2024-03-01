@@ -28,8 +28,7 @@
                 >
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                Edit Data Supporting Devices: {{ $dataSupportingDevice->merk }}
-                {{ $dataSupportingDevice->model }}
+                Edit Data Supporting Devices
             </li>
         </ol>
     </nav>
@@ -39,7 +38,9 @@
             <p class="mb-0">Form to edit data supporting devices.</p>
         </div>
         <div>
-            <a href="{{ route('data-supporting-devices.index') }}" class="btn btn-danger"
+            <a
+                href="{{ route('data-supporting-devices.index') }}"
+                class="btn btn-danger"
                 ><i class="ri-arrow-left-line me-2"></i>Back</a
             >
         </div>
@@ -50,7 +51,11 @@
     <div class="col-12 mb-4">
         <div class="card border-0 shadow components-section">
             <div class="card-body">
-                <form action="{{ route('data-supporting-devices.update', ['data_supporting_device'  => $dataSupportingDevice->id] ) }}" method="POST" enctype="multipart/form-data">
+                <form
+                    action="{{ route('data-supporting-devices.update', ['data_supporting_device'  => $dataSupportingDevice->id] ) }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
                     @csrf
                     @method('PATCH')
                     @include('pages.dataSupportingDevices.__form')
@@ -59,7 +64,7 @@
                             class="btn btn-gray-600 mt-2 ms-2 animate-up-2 float-end"
                             type="submit"
                         >
-                            <i class="ri-send-plane-line me-1"></i> Submit
+                            <i class="ri-send-plane-line me-1"></i> Update
                         </button>
                         <button
                             class="btn btn-warning mt-2 animate-up-2 float-end"

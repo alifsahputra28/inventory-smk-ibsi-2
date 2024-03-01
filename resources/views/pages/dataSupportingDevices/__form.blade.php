@@ -23,7 +23,7 @@
                 name="merk"
                 required
                 aria-describedby="merk"
-               value="{{ $dataSupportingDevice->merk }}"
+                value="{{ $dataSupportingDevice->merk }}"
             />
         </div>
     </div>
@@ -42,30 +42,31 @@
         </div>
     </div>
 </div>
-    <div class="col">
-        <div class="mb-4">
-            <label for="description">Description</label>
-            <input
-                type="text"
-                class="form-control @error('description') is-invalid @enderror"
-                id="description"
-                name="description"
-                required
-                aria-describedby="description"
-                value="{{ $dataSupportingDevice->description }}"
-            />
-        </div>
+<div class="col">
+    <div class="mb-4">
+        <label for="description">Description</label>
+        <input
+            type="text"
+            class="form-control @error('description') is-invalid @enderror"
+            id="description"
+            name="description"
+            required
+            aria-describedby="description"
+            value="{{ $dataSupportingDevice->description }}"
+        />
     </div>
-    <div class="col-lg-12 col-sm-12">
-        <div class="mb-4">
-            <label for="image">Image</label>
-            <input
-                type="file"
-                class="form-control @error('image') is-invalid @enderror"
-                id="image"
-                name="image"
-                aria-describedby="image"
-                {{ $dataSupportingDevice->id ===null ? 'required' : '' }}
-            />
-        </div>
+</div>
+<div class="col-lg-12 col-sm-12">
+    <div class="mb-4">
+        <label for="image">Image</label>
+        <input
+            type="file"
+            class="form-control @error('image') is-invalid @enderror"
+            id="image"
+            name="image"
+            aria-describedby="image"
+            {{
+            $dataSupportingDevice-
+        />id ===null ? 'required' : '' }} />
     </div>
+</div>

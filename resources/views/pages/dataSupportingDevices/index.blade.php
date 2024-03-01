@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main')
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -45,9 +47,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6 offset-md-6">
-    
-  </div>
+    <div class="col-md-6 offset-md-6"></div>
 </div>
 
 <div class="card border-0 shadow mb-4">
@@ -58,14 +58,16 @@
         </div>
         @endif
         <div class="table-responsive">
-            <table class="table-data-supporting-devices table-centered table-nowrap mb-0">
+            <table
+                class="table-data-supporting-devices table-centered table-nowrap mb-0"
+            >
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
-                        <th class="text-center">NAME</th>
-                        <th class="text-center">MODEL</th>
-                        <th class="text-center">MODEL/TYPE</th>
-                        <th class="text-center">DESCRIPTION</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Model</th>
+                        <th class="text-center">Model/Type</th>
+                        <th class="text-center">Description</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -74,7 +76,6 @@
         </div>
     </div>
 </div>
-
 
 <script type="text/javascript">
     $(function () {

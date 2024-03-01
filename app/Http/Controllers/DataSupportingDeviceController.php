@@ -71,7 +71,7 @@ class DataSupportingDeviceController extends Controller
             'description'       => $request->description,
             'image'             => $image->hashName(),
         ]);
-        return redirect()->route('data-supporting-devices.index')->with('success', 'Create Data Success');
+        return redirect()->route('data-supporting-devices.index')->with('success', 'Data Saved Successfully');
     }
 
     /**
@@ -114,7 +114,7 @@ class DataSupportingDeviceController extends Controller
             'model_or_type'     => $request->model_or_type,
             'description'       => $request->description,
         ]);
-        return redirect()->route('data-supporting-devices.index')->with('success', 'Update Data Success');
+        return redirect()->route('data-supporting-devices.index')->with('success', 'Data Update Successfully');
     }
 
     /**
@@ -126,7 +126,7 @@ class DataSupportingDeviceController extends Controller
         Storage::disk('local')->delete('public/data-supporting-devices/' . basename($dataSupportingDevice->image));
         return response()->json([
             'success'   => true,
-            'message'   => 'Data Berhasi Di Hapus'
+            'message'   => 'Data Deleted Successfully'
         ]);
     }
 }
