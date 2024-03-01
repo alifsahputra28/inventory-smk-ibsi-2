@@ -28,14 +28,14 @@
                 >
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                Add Computer Data
+                Edit Computer Data
             </li>
         </ol>
     </nav>
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
-            <h1 class="h4">Add Computer Data</h1>
-            <p class="mb-0">Form to add computer data.</p>
+            <h1 class="h4">Edit Computer Data</h1>
+            <p class="mb-0">Form to edit computer data.</p>
         </div>
         <div>
             <a href="{{ route('data-computers.index') }}" class="btn btn-danger"
@@ -50,11 +50,14 @@
         <div class="card border-0 shadow components-section">
             <div class="card-body">
                 <h2 class="h5 mb-4">Series</h2>
-                <form action="{{ route('data-computers.update', $dataComputer->id) }}" method="POST" enctype="multipart/form-data">
-                    @method('PATCH')
+                <form
+                    action="{{ route('data-computers.update', $dataComputer->id) }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+                    @method('PATCH') 
                     @csrf
-              @include('pages.dataComputers.__form')
-
+                    @include('pages.dataComputers.__form')
                     <div class="mt-3">
                         <button
                             class="btn btn-gray-600 mt-2 ms-2 animate-up-2 float-end"

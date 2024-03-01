@@ -59,12 +59,11 @@
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
-                        <th class="text-center">MERK</th>
-                        <th class="text-center">MODEL</th>
-                        <th class="text-center">PROCESSOR</th>
-                        <th class="text-center">VGA</th>
+                        <th class="text-center">Merk</th>
+                        <th class="text-center">Model</th>
+                        <th class="text-center">Processor</th>
                         <th class="text-center">RAM</th>
-                        <th class="text-center">DISK SIZE</th>
+                        <th class="text-center">Disk Size</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -93,7 +92,6 @@
                 { data: "merk", name: "merk" },
                 { data: "model", name: "model" },
                 { data: "processor", name: "processor" },
-                { data: "vga", name: "vga" },
                 { data: "ram", name: "ram" },
                 { data: "disk_size", name: "disk_size" },
                 {

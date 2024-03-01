@@ -50,16 +50,19 @@
         <div class="card border-0 shadow components-section">
             <div class="card-body">
                 <h2 class="h5 mb-4">Series</h2>
-                <form action="{{ route('data-computers.store') }}" method="POST" enctype="multipart/form-data">
+                <form
+                    action="{{ route('data-computers.store') }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
                     @csrf
-              @include('pages.dataComputers.__form')
-
+                    @include('pages.dataComputers.__form')
                     <div class="mt-3">
                         <button
                             class="btn btn-gray-600 mt-2 ms-2 animate-up-2 float-end"
                             type="submit"
                         >
-                            <i class="ri-send-plane-line me-1"></i> Submit
+                            <i class="ri-send-plane-line me-1"></i> Save
                         </button>
                         <button
                             class="btn btn-warning mt-2 animate-up-2 float-end"
