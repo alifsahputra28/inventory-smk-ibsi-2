@@ -115,20 +115,8 @@
                             value="Good">Good
                         </option>
                         <option {{ ($laboratorySupportingDevice->
-                            condition === 'Damaged') ? 'selected' : '' }}
-                            value="Damaged">Damaged
-                        </option>
-                        <option {{ ($laboratorySupportingDevice->
-                            condition === 'Lost') ? 'selected' : '' }}
-                            value="Lost">Lost
-                        </option>
-                        <option {{ ($laboratorySupportingDevice->
-                            condition === 'Maintenance') ? 'selected' : '' }}
-                            value="Maintenance">Maintenance
-                        </option>
-                        <option {{ ($laboratorySupportingDevice->
-                            condition === 'Outdated') ? 'selected' : '' }}
-                            value="Outdated">Outdated
+                            condition === 'Good Enough') ? 'selected' : '' }}
+                            value="Good Enough">Good Enough
                         </option>
                     </select>
                 </div>
