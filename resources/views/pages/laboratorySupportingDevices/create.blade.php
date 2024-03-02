@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main')
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -50,31 +52,30 @@
     method="POST"
     enctype="multipart/form-data"
 >
-    @csrf
-    @include('pages.laboratorySupportingDevices.__form')
+    @csrf @include('pages.laboratorySupportingDevices.__form')
 </form>
 
 <script>
     $(document).ready(function () {
-        $('.choose-supporting-devices').on('click', function () {
-            var supportingDevicesId = $(this).data('id');
+        $(".choose-supporting-devices").on("click", function () {
+            var supportingDevicesId = $(this).data("id");
 
             $.ajax({
-                type: 'GET',
-                url: '/get-data-supporting-devices/' + supportingDevicesId,
+                type: "GET",
+                url: "/get-data-supporting-devices/" + supportingDevicesId,
                 success: function (data) {
                     if (data.name) {
-                        $('#name').val(data.name);
-                        $('#merk').val(data.merk);
-                        $('#model_or_type').val(data.model_or_type);
-                        $('#chooseDatasupportingDevicesModal').modal('hide'); // Optional: Hide the modal after choosing
+                        $("#name").val(data.name);
+                        $("#merk").val(data.merk);
+                        $("#model_or_type").val(data.model_or_type);
+                        $("#chooseDatasupportingDevicesModal").modal("hide"); // Optional: Hide the modal after choosing
                     } else {
-                        console.error('Error: ' + data.error);
+                        console.error("Error: " + data.error);
                     }
                 },
                 error: function (error) {
-                    console.error('Error: ' + error.statusText);
-                }
+                    console.error("Error: " + error.statusText);
+                },
             });
         });
     });

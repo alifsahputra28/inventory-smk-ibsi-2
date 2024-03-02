@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main')
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -50,7 +52,7 @@
     method="POST"
     enctype="multipart/form-data"
 >
-@method('PATCH')
+    @method('PATCH')
     @csrf
     @include('pages.laboratorySupportingDevices.__form')
 </form>

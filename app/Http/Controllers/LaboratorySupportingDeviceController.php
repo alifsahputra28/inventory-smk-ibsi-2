@@ -156,7 +156,7 @@ class LaboratorySupportingDeviceController extends Controller
                 'model_or_type'      => $request->model_or_type,
             ]);
         }
-        return redirect()->route('laboratory-supporting-devices.index')->with('success', 'Create Data Success');
+        return redirect()->route('laboratory-supporting-devices.index')->with('success', 'Data Saved Successfully');
     }
 
     /**
@@ -164,7 +164,7 @@ class LaboratorySupportingDeviceController extends Controller
      */
     public function show(LaboratorySupportingDevice $laboratorySupportingDevice)
     {
-        //
+         return view('pages.laboratorySupportingDevices.show', compact('laboratorySupportingDevice'));
     }
 
     /**
@@ -191,7 +191,7 @@ class LaboratorySupportingDeviceController extends Controller
             'merk'      => $request->merk,
             'model_or_type'      => $request->model_or_type,
         ]);
-        return redirect()->route('laboratory-supporting-devices.index')->with('success', 'Update Data Success');
+        return redirect()->route('laboratory-supporting-devices.index')->with('success', 'Data Update Successfully');
     }
 
     /**
@@ -203,7 +203,7 @@ class LaboratorySupportingDeviceController extends Controller
 
         return response()->json([
             'success'   => true,
-            'message'   => 'Data User Berhasi Di Hapus'
+            'message'   => 'Data Deleted Successfully'
         ]);
     }
 

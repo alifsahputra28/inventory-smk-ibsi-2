@@ -138,7 +138,7 @@
                 </div>
             </div>
             @endif @if ($laboratoryComputer->id === null)
-            <div class="col-lg-4 col-sm-4">
+            <div class="col-lg-6 col-sm-6">
                 <div class="mb-4">
                     <label for="diskSize">Amount</label>
                     <input
@@ -152,7 +152,7 @@
                 </div>
             </div>
             @endif
-            <div class="col-lg-4 col-sm-4">
+            <div class="col-lg-6 col-sm-6">
                 <div class="mb-4">
                     <label for="condition">Condition</label>
                     <select
@@ -185,7 +185,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-4">
+            <div class="col-lg-12 col-sm-12">
                 <div class="mb-4">
                     <label for="date">Entry Date</label>
                     <input

@@ -64,7 +64,9 @@
         <div class="row">
             <div class="col-lg-12 col-sm-12">
                 <div class="mb-4">
-                    <label for="supportingDeviceNumber">Supporting Device Number</label>
+                    <label for="supportingDeviceNumber"
+                        >Supporting Device Number</label
+                    >
                     <div class="form-floating">
                         <input
                             type="text"
@@ -83,7 +85,7 @@
                 </div>
             </div>
             @if ($laboratorySupportingDevice->id === null)
-            <div class="col-lg-4 col-sm-4">
+            <div class="col-lg-6 col-sm-6">
                 <div class="mb-4">
                     <label for="diskSize">Amount</label>
                     <input
@@ -98,8 +100,8 @@
                 </div>
             </div>
             @endif
-          
-            <div class="col-lg-4 col-sm-4">
+
+            <div class="col-lg-6 col-sm-6">
                 <div class="mb-4">
                     <label for="condition">Condition</label>
                     <select
@@ -108,15 +110,30 @@
                         name="condition"
                     >
                         <option selected>Open this select</option>
-                        <option {{ ($laboratorySupportingDevice->condition === 'Good') ? 'selected' : '' }} value="Good">Good</option>
-                        <option {{ ($laboratorySupportingDevice->condition === 'Damaged') ? 'selected' : '' }} value="Damaged">Damaged</option>
-                        <option {{ ($laboratorySupportingDevice->condition === 'Lost') ? 'selected' : '' }} value="Lost">Lost</option>
-                        <option {{ ($laboratorySupportingDevice->condition === 'Maintenance') ? 'selected' : '' }} value="Maintenance">Maintenance</option>
-                        <option {{ ($laboratorySupportingDevice->condition === 'Outdated') ? 'selected' : '' }} value="Outdated">Outdated</option>
+                        <option {{ ($laboratorySupportingDevice->
+                            condition === 'Good') ? 'selected' : '' }}
+                            value="Good">Good
+                        </option>
+                        <option {{ ($laboratorySupportingDevice->
+                            condition === 'Damaged') ? 'selected' : '' }}
+                            value="Damaged">Damaged
+                        </option>
+                        <option {{ ($laboratorySupportingDevice->
+                            condition === 'Lost') ? 'selected' : '' }}
+                            value="Lost">Lost
+                        </option>
+                        <option {{ ($laboratorySupportingDevice->
+                            condition === 'Maintenance') ? 'selected' : '' }}
+                            value="Maintenance">Maintenance
+                        </option>
+                        <option {{ ($laboratorySupportingDevice->
+                            condition === 'Outdated') ? 'selected' : '' }}
+                            value="Outdated">Outdated
+                        </option>
                     </select>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-4">
+            <div class="col-lg-12 col-sm-12">
                 <div class="mb-4">
                     <label for="date">Entry Date</label>
                     <input
@@ -141,7 +158,8 @@
                         id="floatingTextarea2"
                         style="height: 100px"
                         name="description"
-                    >{{ $laboratorySupportingDevice->description }}</textarea>
+                        >{{ $laboratorySupportingDevice->description }}</textarea
+                    >
                 </div>
             </div>
         </div>
@@ -151,7 +169,7 @@
                 type="submit"
             >
                 <i class="ri-send-plane-line me-1"></i>
-                Submit
+                Save
             </button>
             <button
                 class="btn btn-warning mt-2 animate-up-2 float-end"
@@ -163,62 +181,67 @@
     </div>
 </div>
 
-
 {{-- MODAL DATA SUPPORTING DEVICES --}}
 
 <div
-class="modal fade"
-id="chooseDatasupportingDevicesModal"
-tabindex="-1"
-aria-labelledby="exampleModalLabel"
-aria-hidden="true"
+    class="modal fade"
+    id="chooseDatasupportingDevicesModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
 >
-<div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Table Data Supporting Devices
-            </h1>
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-            ></button>
-        </div>
-        <div class="container p-4">
-            <div class="border border-grey rounded p-3">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Merk</th>
-                            <th>Model/Type</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($dataSupportingDevices as $item)
-                          <tr>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->merk }}</td>
-                            <td>{{ $item->model_or_type }}</td>
-                            <td>  <a class="btn btn-warning choose-supporting-devices" data-id="{{ $item->id }}">Choose</a></td>
-                          </tr>
-                      @endforeach
-                    </tbody>
-                </table>
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Table Data Supporting Devices
+                </h1>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="container p-4">
+                <div class="border border-grey rounded p-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Merk</th>
+                                <th>Model/Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($dataSupportingDevices as $item)
+                            <tr>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->merk }}</td>
+                                <td>{{ $item->model_or_type }}</td>
+                                <td>
+                                    <a
+                                        class="btn btn-warning choose-supporting-devices"
+                                        data-id="{{ $item->id }}"
+                                        >Choose</a
+                                    >
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                >
+                    Close
+                </button>
             </div>
         </div>
-        <div class="modal-footer">
-            <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-            >
-                Close
-            </button>
-        </div>
     </div>
-</div>
 </div>
