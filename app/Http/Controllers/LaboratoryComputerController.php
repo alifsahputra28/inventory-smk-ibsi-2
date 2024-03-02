@@ -155,7 +155,7 @@ class LaboratoryComputerController extends Controller
             ]);
         }
 
-        return redirect()->route('laboratory-computers.index')->with('success', 'Create Data Success');
+        return redirect()->route('laboratory-computers.index')->with('success', 'Data Saved Successfully');
     }
 
     /**
@@ -194,7 +194,7 @@ class LaboratoryComputerController extends Controller
             'disk_size'             => $laboratoryComputer->disk_size,
         ]);
 
-        return redirect()->route('laboratory-computers.index')->with('success', 'Update Data Success');
+        return redirect()->route('laboratory-computers.index')->with('success', 'Data Update Successfully');
     }
 
     /**
@@ -206,7 +206,7 @@ class LaboratoryComputerController extends Controller
 
         return response()->json([
             'success'   => true,
-            'message'   => 'Data User Berhasi Di Hapus'
+            'message'   => 'Data Deleted Successfully'
         ]);
     }
 

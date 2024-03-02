@@ -65,8 +65,6 @@
             id="image"
             name="image"
             aria-describedby="image"
-            {{
-            $dataSupportingDevice-
-        />id ===null ? 'required' : '' }} />
+            {{ $dataSupportingDevice->id ===null ? 'required' : '' }} />
     </div>
 </div>

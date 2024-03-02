@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main')
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -26,14 +28,14 @@
                 >
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                Add Laboratory Computer
+                Edit Laboratory Computer
             </li>
         </ol>
     </nav>
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
-            <h1 class="h4">Add Laboratory Computer</h1>
-            <p class="mb-0">Form to add laboratory computer.</p>
+            <h1 class="h4">Edit Laboratory Computer</h1>
+            <p class="mb-0">Form to Edit laboratory computer.</p>
         </div>
         <div>
             <a
@@ -50,37 +52,35 @@
     method="POST"
     enctype="multipart/form-data"
 >
-@method('PATCH')
+    @method('PATCH')
     @csrf
-@include('pages.laboratoryComputers.__form')
+    @include('pages.laboratoryComputers.__form')
 </form>
-
-
 
 <script>
     $(document).ready(function () {
-        $('.choose-computer').on('click', function () {
-            var computerId = $(this).data('id');
+        $(".choose-computer").on("click", function () {
+            var computerId = $(this).data("id");
 
             $.ajax({
-                type: 'GET',
-                url: '/get-data-computer/' + computerId,
+                type: "GET",
+                url: "/get-data-computer/" + computerId,
                 success: function (data) {
                     if (data.merk) {
-                        $('#selectedComputerMerk').val(data.merk);
-                        $('#selectedComputerModel').val(data.model);
-                        $('#processor').val(data.processor);
-                        $('#vga').val(data.vga);
-                        $('#ram').val(data.ram);
-                        $('#disk_size').val(data.disk_size);
-                        $('#chooseDataComputerModal').modal('hide'); // Optional: Hide the modal after choosing
+                        $("#selectedComputerMerk").val(data.merk);
+                        $("#selectedComputerModel").val(data.model);
+                        $("#processor").val(data.processor);
+                        $("#vga").val(data.vga);
+                        $("#ram").val(data.ram);
+                        $("#disk_size").val(data.disk_size);
+                        $("#chooseDataComputerModal").modal("hide"); // Optional: Hide the modal after choosing
                     } else {
-                        console.error('Error: ' + data.error);
+                        console.error("Error: " + data.error);
                     }
                 },
                 error: function (error) {
-                    console.error('Error: ' + error.statusText);
-                }
+                    console.error("Error: " + error.statusText);
+                },
             });
         });
     });

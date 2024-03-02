@@ -5,11 +5,11 @@
 // deleteButtons.forEach((button) => {
 //     button.addEventListener('click', (e) => {
 //         e.preventDefault();
-        
+
 //         const userId = button.getAttribute('data-user-id');
 //         const formId = `deleteForm${userId}`;
 //         const deleteForm = document.getElementById(formId);
-        
+
 //         Swal.fire({
 //             title: 'Are you sure?',
 //             text: "This action cannot be undone!",
@@ -26,8 +26,6 @@
 //     });
 // });
 
-
-
 $("body").on("click", ".btn-delete", function () {
     let data_id = $(this).data("id");
     let id = $(this).attr("id");
@@ -36,8 +34,8 @@ $("body").on("click", ".btn-delete", function () {
     // console.log(data_id);
     // console.log(token);
     Swal.fire({
-        title: "Anda Yakin?",
-        text: "Yakin Ingin Menghapus ?",
+        title: "Are you sure?",
+        text: "Sure you want to delete?",
         icon: "warning",
         showCancelButton: true,
         cancelButtonText: "batal",
@@ -62,7 +60,7 @@ $("body").on("click", ".btn-delete", function () {
                         showConfirmButton: false,
                         timer: 3000,
                         icon: "success",
-                        title: "Data Berhasil Di Hapus",
+                        title: "Data Deleted Successfully",
                         timerProgressBar: true,
                         didOpen: (toast) => {
                             toast.addEventListener(

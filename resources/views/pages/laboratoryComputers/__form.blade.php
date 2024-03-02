@@ -115,44 +115,43 @@
     <div class="card-body">
         <h2 class="h5 mb-3">Computer Information</h2>
         <div class="row">
-          @if ($laboratoryComputer->id !== null)
-          <div class="col-lg-12 col-sm-12">
-            <div class="mb-4">
-                <label for="computerNumber">Computer Number</label>
-                <div class="form-floating">
-                    <input
-                        type="text"
-                        class="form-control @error('computer_number') is-invalid @enderror"
-                        id="computerNumber"
-                        name="computer_number"
-                        required
-                        aria-describedby="computer_number"
-                        required
-                        readonly
-                        value="{{ $laboratoryComputer->computer_number ?? old('computer_number')}}"
-                    />
-                    <label for="computerNumber"
-                        >Computer numbering starts from</label
-                    >
+            @if ($laboratoryComputer->id !== null)
+            <div class="col-lg-12 col-sm-12">
+                <div class="mb-4">
+                    <label for="computerNumber">Computer Number</label>
+                    <div class="form-floating">
+                        <input
+                            type="text"
+                            class="form-control @error('computer_number') is-invalid @enderror"
+                            id="computerNumber"
+                            name="computer_number"
+                            required
+                            aria-describedby="computer_number"
+                            required
+                            readonly
+                            value="{{ $laboratoryComputer->computer_number ?? old('computer_number')}}"
+                        />
+                        <label for="computerNumber"
+                            >Computer numbering starts from</label
+                        >
+                    </div>
                 </div>
             </div>
-        </div>
-          @endif
-          @if ($laboratoryComputer->id === null)
-          <div class="col-lg-4 col-sm-4">
-            <div class="mb-4">
-                <label for="diskSize">Amount</label>
-                <input
-                    type="number"
-                    class="form-control @error('amount') is-invalid @enderror"
-                    id="amount"
-                    name="amount"
-                    required
-                    aria-describedby="amount"
-                />
+            @endif @if ($laboratoryComputer->id === null)
+            <div class="col-lg-4 col-sm-4">
+                <div class="mb-4">
+                    <label for="diskSize">Amount</label>
+                    <input
+                        type="number"
+                        class="form-control @error('amount') is-invalid @enderror"
+                        id="amount"
+                        name="amount"
+                        required
+                        aria-describedby="amount"
+                    />
+                </div>
             </div>
-        </div>
-          @endif
+            @endif
             <div class="col-lg-4 col-sm-4">
                 <div class="mb-4">
                     <label for="condition">Condition</label>
@@ -163,11 +162,26 @@
                         value="{{ $laboratoryComputer->condition ?? old('condition')}}"
                     >
                         <option selected>Open this select</option>
-                        <option {{ $laboratoryComputer->condition === 'Good' ? 'selected' : '' }} value="Good">Good</option>
-                        <option {{ $laboratoryComputer->condition === 'Damaged' ? 'selected' : '' }} value="Damaged">Damaged</option>
-                        <option {{ $laboratoryComputer->condition === 'Lost' ? 'selected' : '' }} value="Lost">Lost</option>
-                        <option {{ $laboratoryComputer->condition === 'Maintenance' ? 'selected' : '' }} value="Maintenance">Maintenance</option>
-                        <option {{ $laboratoryComputer->condition === 'Outdated' ? 'selected' : '' }} value="Outdated">Outdated</option>
+                        <option {{ $laboratoryComputer->
+                            condition === 'Good' ? 'selected' : '' }}
+                            value="Good">Good
+                        </option>
+                        <option {{ $laboratoryComputer->
+                            condition === 'Damaged' ? 'selected' : '' }}
+                            value="Damaged">Damaged
+                        </option>
+                        <option {{ $laboratoryComputer->
+                            condition === 'Lost' ? 'selected' : '' }}
+                            value="Lost">Lost
+                        </option>
+                        <option {{ $laboratoryComputer->
+                            condition === 'Maintenance' ? 'selected' : '' }}
+                            value="Maintenance">Maintenance
+                        </option>
+                        <option {{ $laboratoryComputer->
+                            condition === 'Outdated' ? 'selected' : '' }}
+                            value="Outdated">Outdated
+                        </option>
                     </select>
                 </div>
             </div>
@@ -196,7 +210,8 @@
                         id="floatingTextarea2"
                         style="height: 100px"
                         name="description"
-                    >{{ $laboratoryComputer->description ?? old('description')}}</textarea>
+                        >{{ $laboratoryComputer->description ?? old('description')}}</textarea
+                    >
                 </div>
             </div>
         </div>
@@ -206,7 +221,7 @@
                 type="submit"
             >
                 <i class="ri-send-plane-line me-1"></i>
-                Submit
+                Save
             </button>
             <button
                 class="btn btn-warning mt-2 animate-up-2 float-end"
@@ -255,15 +270,21 @@
                         </thead>
                         <tbody>
                             @foreach ($dataComputers as $item)
-                                <tr>
-                                    <td>{{ $item->merk }}</td>
-                                    <td>{{ $item->model }}</td>
-                                    <td>{{ $item->processor }}</td>
-                                    <td>{{ $item->vga }}</td>
-                                    <td>{{ $item->ram }}</td>
-                                    <td>{{ $item->disk_size }}</td>
-                                    <td>  <a class="btn btn-warning choose-computer" data-id="{{ $item->id }}">Choose</a></td>
-                                </tr>
+                            <tr>
+                                <td>{{ $item->merk }}</td>
+                                <td>{{ $item->model }}</td>
+                                <td>{{ $item->processor }}</td>
+                                <td>{{ $item->vga }}</td>
+                                <td>{{ $item->ram }}</td>
+                                <td>{{ $item->disk_size }}</td>
+                                <td>
+                                    <a
+                                        class="btn btn-warning choose-computer"
+                                        data-id="{{ $item->id }}"
+                                        >Choose</a
+                                    >
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

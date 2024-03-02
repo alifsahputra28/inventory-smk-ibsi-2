@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main')
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -26,7 +28,7 @@
                 >
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                Detail Computer:
+                Detail Computer
             </li>
         </ol>
     </nav>
@@ -36,7 +38,9 @@
             <p class="mb-0">Contains details of the computer.</p>
         </div>
         <div>
-            <a href="{{ route('laboratory-computers.index') }}" class="btn btn-danger"
+            <a
+                href="{{ route('laboratory-computers.index') }}"
+                class="btn btn-danger"
                 ><i class="ri-arrow-left-line me-2"></i>Back</a
             >
         </div>
@@ -69,7 +73,9 @@
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">Processor</p>
-                                    <h5>{{ $laboratoryComputer->processor }}</h5>
+                                    <h5>
+                                        {{ $laboratoryComputer->processor }}
+                                    </h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
@@ -89,7 +95,9 @@
                                     <p class="mb-0 text-black-50">
                                         Disk Size / GB
                                     </p>
-                                    <h5>{{ $laboratoryComputer->disk_size }}</h5>
+                                    <h5>
+                                        {{ $laboratoryComputer->disk_size }}
+                                    </h5>
                                 </li>
                             </ul>
                         </div>
@@ -103,14 +111,20 @@
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
-                                    <p class="mb-0 text-black-50">Computer Number</p>
-                                    <h5>{{ $laboratoryComputer->computer_number }}</h5>
+                                    <p class="mb-0 text-black-50">
+                                        Computer Number
+                                    </p>
+                                    <h5>
+                                        {{ $laboratoryComputer->computer_number }}
+                                    </h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">Condition</p>
-                                    <h5>{{ $laboratoryComputer->condition }}</h5>
+                                    <h5>
+                                        {{ $laboratoryComputer->condition }}
+                                    </h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
@@ -118,22 +132,21 @@
                                     <p class="mb-0 text-black-50">Date</p>
                                     <h5>{{ $laboratoryComputer->date }}</h5>
                                 </li>
-                                <li
-                                    class="list-group-item px-0 border-bottom"
-                                >
+                                <li class="list-group-item px-0 border-bottom">
                                     <p class="mb-0 text-black-50">
                                         Description
                                     </p>
-                                    <p class="fs-6">{{ $laboratoryComputer->description }}</p>
+                                    <p class="fs-6">
+                                        {{ $laboratoryComputer->description }}
+                                    </p>
                                 </li>
                             </ul>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="row mt-4">
-                  <div class="col">
-                    <div class="card p-3 mb-3">
+                    <div class="col">
+                        <div class="card p-3 mb-3">
                             <h2 class="h5 mb-4">Laboratory Room</h2>
                             <ul
                                 class="list-group list-group-flush border-top-0"
@@ -141,24 +154,34 @@
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
-                                    <p class="mb-0 text-black-50">Laboratory Number</p>
-                                    <h5>{{ $laboratoryComputer->laboratoryRoom->laboratory_number }}</h5>
+                                    <p class="mb-0 text-black-50">
+                                        Laboratory Number
+                                    </p>
+                                    <h5>
+                                        {{ $laboratoryComputer->laboratoryRoom->laboratory_number }}
+                                    </h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
-                                    <p class="mb-0 text-black-50">Laboratory Name</p>
-                                    <h5>{{ $laboratoryComputer->laboratoryRoom->name }}</h5>
+                                    <p class="mb-0 text-black-50">
+                                        Laboratory Name
+                                    </p>
+                                    <h5>
+                                        {{ $laboratoryComputer->laboratoryRoom->name }}
+                                    </h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">PIC</p>
-                                    <h5>{{ $laboratoryComputer->laboratoryRoom->pic }}</h5>
+                                    <h5>
+                                        {{ $laboratoryComputer->laboratoryRoom->pic }}
+                                    </h5>
                                 </li>
                             </ul>
                         </div>
-                  </div>
+                    </div>
                 </div>
             </div>
         </div>
