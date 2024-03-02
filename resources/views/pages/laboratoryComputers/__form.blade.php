@@ -115,30 +115,8 @@
     <div class="card-body">
         <h2 class="h5 mb-3">Computer Information</h2>
         <div class="row">
-            @if ($laboratoryComputer->id !== null)
+            @if ($laboratoryComputer->id === null)
             <div class="col-lg-12 col-sm-12">
-                <div class="mb-4">
-                    <label for="computerNumber">Computer Number</label>
-                    <div class="form-floating">
-                        <input
-                            type="text"
-                            class="form-control @error('computer_number') is-invalid @enderror"
-                            id="computerNumber"
-                            name="computer_number"
-                            required
-                            aria-describedby="computer_number"
-                            required
-                            readonly
-                            value="{{ $laboratoryComputer->computer_number ?? old('computer_number')}}"
-                        />
-                        <label for="computerNumber"
-                            >Computer numbering starts from</label
-                        >
-                    </div>
-                </div>
-            </div>
-            @endif @if ($laboratoryComputer->id === null)
-            <div class="col-lg-6 col-sm-6">
                 <div class="mb-4">
                     <label for="diskSize">Amount</label>
                     <input
@@ -152,7 +130,7 @@
                 </div>
             </div>
             @endif
-            <div class="col-lg-6 col-sm-6">
+            <div class="col-lg-12 col-sm-12">
                 <div class="mb-4">
                     <label for="condition">Condition</label>
                     <select
@@ -167,20 +145,8 @@
                             value="Good">Good
                         </option>
                         <option {{ $laboratoryComputer->
-                            condition === 'Damaged' ? 'selected' : '' }}
-                            value="Damaged">Damaged
-                        </option>
-                        <option {{ $laboratoryComputer->
-                            condition === 'Lost' ? 'selected' : '' }}
-                            value="Lost">Lost
-                        </option>
-                        <option {{ $laboratoryComputer->
-                            condition === 'Maintenance' ? 'selected' : '' }}
-                            value="Maintenance">Maintenance
-                        </option>
-                        <option {{ $laboratoryComputer->
-                            condition === 'Outdated' ? 'selected' : '' }}
-                            value="Outdated">Outdated
+                            condition === 'Good Enough' ? 'selected' : '' }}
+                            value="Good Enough">Good Enough
                         </option>
                     </select>
                 </div>

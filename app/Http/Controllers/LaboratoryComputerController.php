@@ -139,7 +139,7 @@ class LaboratoryComputerController extends Controller
     public function store(LaboratoryComputerRequest $request, LaboratoryRoom $laboratoryRoom)
     {
         for ($i = 1; $i <= $request->amount; $i++) {
-            $idGenerator = IdGenerator::generate(['table' => 'laboratory_computers', 'field' => 'computer_number', 'length' => 7, 'prefix' => 'COMP']);
+            $idGenerator = IdGenerator::generate(['table' => 'laboratory_computers', 'field' => 'computer_number', 'length' => 7, 'prefix' => 'COM']);
             LaboratoryComputer::create([
                 'laboratory_room_id'    => $laboratoryRoom->id,
                 'computer_number'       => $idGenerator,

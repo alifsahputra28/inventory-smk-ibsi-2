@@ -144,7 +144,7 @@ class LaboratorySupportingDeviceController extends Controller
     {
 
         for ($i = 1; $i <= $request->amount; $i++) {
-            $idGenerator = IdGenerator::generate(['table' => 'laboratory_supporting_devices', 'field' => 'supporting_device_number', 'length' => 9, 'prefix' => 'DEVICE']);
+            $idGenerator = IdGenerator::generate(['table' => 'laboratory_supporting_devices', 'field' => 'supporting_device_number', 'length' => 9, 'prefix' => 'DEV']);
             LaboratorySupportingDevice::create([
                 'laboratory_room_id'      => $laboratoryRoom->id,
                 'supporting_device_number'      => $idGenerator,
