@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataComputerController;
 use App\Http\Controllers\DataSupportingDeviceController;
 use App\Http\Controllers\LaboratoryComputerController;
@@ -37,9 +38,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/dashboard', function(){
-        return view('pages.dashboard.index');
-    })->name('dashboard');
+    // Route::get('/dashboard', function(){
+    //     return view('pages.dashboard.index');
+    // })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('laboratory-rooms', LaboratoryRoomController::class)->except('show');

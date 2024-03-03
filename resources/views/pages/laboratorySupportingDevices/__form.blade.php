@@ -76,7 +76,7 @@
                             required
                             aria-describedby="supporting_device_number"
                             readonly
-                            value="{{ $laboratorySupportingDevice->supporting_device_number }}"
+                            value="{{ ($laboratorySupportingDeviceNumber === null) ? 'DEVICE001' :  $laboratorySupportingDeviceNumber}}"
                         />
                         <label for="supportingDeviceNumber"
                             >Supporting device numbering starts from</label

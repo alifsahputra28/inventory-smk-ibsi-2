@@ -130,7 +130,9 @@ class LaboratoryComputerController extends Controller
     {
         $dataComputers = DataComputer::latest()->get();
         $laboratoryComputer = new LaboratoryComputer;
-        return view('pages.laboratoryComputers.create', compact('dataComputers', 'laboratoryRoom', 'laboratoryComputer'));
+        $laboratoryComputerNumber =  LaboratoryComputer::orderBy('id', 'DESC')->first()->computer_number;
+        // dd($laboratoryComputerNumber);
+        return view('pages.laboratoryComputers.create', compact('dataComputers', 'laboratoryRoom', 'laboratoryComputer', 'laboratoryComputerNumber'));
     }
 
     /**

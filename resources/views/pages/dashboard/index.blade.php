@@ -22,7 +22,7 @@
                   <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
                       <h2 class="h6 text-gray-400 mb-0">Computer Lab...</h2>
-                      <h3 class="fw-extrabold mb-2">34</h3>
+                      <h3 class="fw-extrabold mb-2">{{ $computerLabour }}</h3>
                     </div>
                   </div>
                 </div>
@@ -46,7 +46,7 @@
                   <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
                       <h2 class="h6 text-gray-400 mb-0">Supporting De...</h2>
-                      <h3 class="fw-extrabold mb-2">60</h3>
+                      <h3 class="fw-extrabold mb-2">{{ $dataSupportingDevice }}</h3>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
                       <h2 class="h6 text-gray-400 mb-0"> Outdated Com...</h2>
-                      <h3 class="fw-extrabold mb-2">50</h3>
+                      <h3 class="fw-extrabold mb-2">{{ $outdatedComputer }}</h3>
                     </div>
                   </div>
                 </div>
@@ -94,7 +94,7 @@
                   <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
                       <h2 class="h6 text-gray-400 mb-0">Outdated Supp...</h2>
-                      <h3 class="fw-extrabold mb-2">30</h3>
+                      <h3 class="fw-extrabold mb-2">{{ $outdatedSupportingDevice }}</h3>
                     </div>
                   </div>
                 </div>

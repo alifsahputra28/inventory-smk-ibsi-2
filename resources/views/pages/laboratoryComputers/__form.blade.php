@@ -115,6 +115,28 @@
     <div class="card-body">
         <h2 class="h5 mb-3">Computer Information</h2>
         <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <div class="mb-4">
+                    <label for="supportingDeviceNumber"
+                        >Computer Number</label
+                    >
+                    <div class="form-floating">
+                        <input
+                            type="text"
+                            class="form-control @error('computer_number') is-invalid @enderror"
+                            id="supportingDeviceNumber"
+                            name="computer_number"
+                            required
+                            aria-describedby="computer_number"
+                            readonly
+                            value="{{ ($laboratoryComputerNumber === null) ? 'COM0001' :  $laboratoryComputerNumber}}"
+                        />
+                        <label for="supportingDeviceNumber"
+                            >Computer numbering starts from</label
+                        >
+                    </div>
+                </div>
+            </div>
             @if ($laboratoryComputer->id === null)
             <div class="col-lg-12 col-sm-12">
                 <div class="mb-4">
