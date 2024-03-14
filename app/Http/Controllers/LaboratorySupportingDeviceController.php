@@ -134,7 +134,7 @@ class LaboratorySupportingDeviceController extends Controller
     {
         $dataSupportingDevices = DataSupportingDevice::latest()->get();
         $laboratorySupportingDevice = new LaboratorySupportingDevice();
-        $laboratorySupportingDeviceNumber =  LaboratorySupportingDevice::orderBy('id', 'DESC')->first()->supporting_device_number;
+        $laboratorySupportingDeviceNumber =  null;
         // dd($laboratorySupportingDeviceNumber);
         return view('pages.laboratorySupportingDevices.create', compact('laboratoryRoom', 'dataSupportingDevices', 'laboratorySupportingDevice', 'laboratorySupportingDeviceNumber'));
     }
