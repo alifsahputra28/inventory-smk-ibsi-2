@@ -17,6 +17,13 @@ class LaboratorySupportingDeviceController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct()
+    {
+         $this->middleware('permission:laboratory-supporting-device-list', ['only' => ['index']]);
+         $this->middleware('permission:laboratory-supporting-device-create', ['only' => ['create','store']]);
+         $this->middleware('permission:laboratory-supporting-device-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:laboratory-supporting-device-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         $CanRPL = Auth::user()->can('Lab RPL');

@@ -222,6 +222,7 @@
                 class="dropdown-divider mt-4 mb-3 border-gray-700"
             ></li>
 
+        @if(auth()->user()->can('user-list'))
             <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
                 <a href="{{ route('users.index') }}" class="nav-link">
                     <span class="sidebar-icon">
@@ -230,7 +231,9 @@
                     <span class="sidebar-text">User</span>
                 </a>
             </li>
+        @endif
 
+        @if(auth()->user()->can('role-list'))
             <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
                 <a href="{{ route('roles.index') }}" class="nav-link">
                     <span class="sidebar-icon">
@@ -239,6 +242,7 @@
                     <span class="sidebar-text">Roles</span>
                 </a>
             </li>
+        @endif
         </ul>
     </div>
 </nav>

@@ -17,10 +17,10 @@ class DataSupportingDeviceController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:data-supporting-list', ['only' => ['index']]);
-         $this->middleware('permission:data-supporting-create', ['only' => ['create','store']]);
-         $this->middleware('permission:data-supporting-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:data-supporting-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:data-supporting-device-list', ['only' => ['index']]);
+         $this->middleware('permission:data-supporting-device-create', ['only' => ['create','store']]);
+         $this->middleware('permission:data-supporting-device-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:data-supporting-device-delete', ['only' => ['destroy']]);
     }
     public function index(Request $request)
     {
