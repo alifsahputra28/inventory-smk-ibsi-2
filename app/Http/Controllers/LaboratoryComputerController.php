@@ -13,12 +13,12 @@ use Yajra\DataTables\DataTables;
 
 class LaboratoryComputerController extends Controller
 {
-    function __construct()
+   function __construct()
     {
-         $this->middleware('permission:laboratory-computer-list', ['only' => ['index']]);
-         $this->middleware('permission:laboratory-computer-create', ['only' => ['create','store']]);
-         $this->middleware('permission:laboratory-computer-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:laboratory-computer-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:user-list', ['only' => ['index']]);
+         $this->middleware('permission:user-create', ['only' => ['create','store']]);
+         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
     public function index(Request $request)
     {
