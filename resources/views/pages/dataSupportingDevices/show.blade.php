@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main')
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -21,13 +23,13 @@
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ route('dataSupportingDevice.index', $laboratoryRoom->id) }}"
+                <a href="{{ route('data-supporting-devices.index') }}"
                     >Table: Data Supporting Devices</a
                 >
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                Detail Supporting Device: {{ $supportingDeviceInformation->merk }}
-                {{ $supportingDeviceInformation->model }}
+                Detail Supporting Device: {{ $dataSupportingDevice->merk }}
+                {{ $dataSupportingDevice->model }}
             </li>
         </ol>
     </nav>
@@ -37,7 +39,9 @@
             <p class="mb-0">Contains details of the supporting device.</p>
         </div>
         <div>
-            <a href="{{ route('dataSupportingDevice.index', $laboratoryRoom->id) }}" class="btn btn-danger"
+            <a
+                href="{{ route('data-supporting-devices.index') }}"
+                class="btn btn-danger"
                 ><i class="ri-arrow-left-line me-2"></i>Back</a
             >
         </div>
@@ -58,34 +62,40 @@
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">Name</p>
-                                    <h5>{{ $supportingDeviceInformation->dataSupportingDevice->name }}</h5>
+                                    <h5>{{ $dataSupportingDevice->name }}</h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">Merk</p>
-                                    <h5>{{ $supportingDeviceInformation->dataSupportingDevice->merk }}</h5>
+                                    <h5>{{ $dataSupportingDevice->merk }}</h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">Model/Type</p>
-                                    <h5>{{ $supportingDeviceInformation->dataSupportingDevice->model_or_type }}</h5>
+                                    <h5>
+                                        {{ $dataSupportingDevice->model_or_type }}
+                                    </h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
-                                    <p class="mb-0 text-black-50">Description</p>
-                                    <h5>{{ $supportingDeviceInformation->description }}</h5>
+                                    <p class="mb-0 text-black-50">
+                                        Description
+                                    </p>
+                                    <h5>
+                                        {{ $dataSupportingDevice->description }}
+                                    </h5>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col">
                         <img
-                            src="{{ asset('storage/data-supporting-devices/' . $supportingDeviceInformation->dataSupportingDevice->image) }}"
+                            src="{{ asset('storage/data-supporting-devices/' . $dataSupportingDevice->image) }}"
                             class="img-thumbnail"
-                            alt="..."
+                            alt="{{  $dataSupportingDevice->image }}"
                         />
                     </div>
                 </div>

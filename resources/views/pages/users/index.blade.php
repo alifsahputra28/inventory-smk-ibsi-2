@@ -43,56 +43,29 @@
     </div>
 </div>
 
-<div class="row justify-content-end ">
-    <div class="col-md-5 mb-3 d-flex align-items-center">
-      <div class="d-flex align-items-center">
-        <div class="input-group input-group-sm flex-nowrap">
-            <input
-                type="month"
-                class="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm"
-            />
+<div class="card border-0 shadow mb-4">
+    <div class="card-body">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
         </div>
-        <span class="fs-5 mx-2">-</span>
-        <div class="input-group input-group-sm flex-nowrap">
-            <input
-                type="month"
-                class="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm"
-            />
+        @endif
+        <div class="table-responsive">
+            <table class="table-users table-centered table-nowrap mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Role</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center"></tbody>
+            </table>
         </div>
-      </div>
-        <button type="button" class="btn btn-primary ms-2 btn-sm">
-            Print <i class="ri-printer-fill"></i>
-        </button>
     </div>
 </div>
-
-    <div class="card border-0 shadow mb-4">
-        <div class="card-body">
-            @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-            @endif
-            <div class="table-responsive">
-                <table class="table-users table-centered table-nowrap mb-0">
-                    <thead>
-                        <tr>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Name</th>
-                            <th class="text-center">Email</th>
-                            <th class="text-center">Role</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 <script type="text/javascript">
     $(function () {
         var table = $(".table-users").DataTable({

@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main')
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -21,38 +23,57 @@
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ route('laboratory-rooms.index') }}"
-                    >Table: Laboratory Computers</a
+                <a href="{{ route('data-computers.index') }}"
+                    >Table: Data Computers</a
                 >
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                Add Laboratory Computer
+                Add Computer Data
             </li>
         </ol>
     </nav>
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
-            <h1 class="h4">Add Laboratory Computer</h1>
-            <p class="mb-0">Form to add laboratory computer.</p>
+            <h1 class="h4">Add Computer Data</h1>
+            <p class="mb-0">Form to add computer data.</p>
         </div>
         <div>
-            @include('partial.buttonBack')
+            <a href="{{ route('data-computers.index') }}" class="btn btn-danger"
+                ><i class="ri-arrow-left-line me-2"></i>Back</a
+            >
         </div>
     </div>
 </div>
 
-<form
-    action="{{ route('laboratoryComputer.store',  $laboratoryRoom->id) }}"
-    method="POST"
-    enctype="multipart/form-data"
->
-    @csrf
-    @include('pages.dataComputers.__form')
-</form>
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card border-0 shadow components-section">
+            <div class="card-body">
+                <h2 class="h5 mb-4">Series</h2>
+                <form
+                    action="{{ route('data-computers.store') }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+                    @csrf
+                    @include('pages.dataComputers.__form')
+                    <div class="mt-3">
+                        <button
+                            class="btn btn-gray-600 mt-2 ms-2 animate-up-2 float-end"
+                            type="submit"
+                        >
+                            <i class="ri-send-plane-line me-1"></i> Save
+                        </button>
+                        <button
+                            class="btn btn-warning mt-2 animate-up-2 float-end"
+                            type="reset"
+                        >
+                            <i class="ri-refresh-line me-1"></i> Reset
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-{{-- 
-<script>
-    const computersUrl = "{{ route('laboratory-rooms.get-computers') }}";
-</script> --}}
-
 @endsection

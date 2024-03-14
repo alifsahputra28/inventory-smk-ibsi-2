@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main') 
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -21,13 +23,13 @@
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ URL::previous() }}"
+                <a href="{{ route('data-computers.index') }}"
                     >Table: Data Computer</a
                 >
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                Detail Computer: {{ $computerInformation->dataComputer->merk }}
-                {{ $computerInformation->dataComputer->model }}
+                Detail Computer: {{ $dataComputer->merk }}
+                {{ $dataComputer->model }}
             </li>
         </ol>
     </nav>
@@ -37,7 +39,7 @@
             <p class="mb-0">Contains details of the computer.</p>
         </div>
         <div>
-            <a href="{{ URL::previous() }}" class="btn btn-danger"
+            <a href="{{ route('data-computers.index') }}" class="btn btn-danger"
                 ><i class="ri-arrow-left-line me-2"></i>Back</a
             >
         </div>
@@ -58,31 +60,31 @@
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">Merk</p>
-                                    <h5>{{ $computerInformation->dataComputer->merk }}</h5>
+                                    <h5>{{ $dataComputer->merk }}</h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">Model</p>
-                                    <h5>{{ $computerInformation->dataComputer->model }}</h5>
+                                    <h5>{{ $dataComputer->model }}</h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">Processor</p>
-                                    <h5>{{ $computerInformation->dataComputer->processor }}</h5>
+                                    <h5>{{ $dataComputer->processor }}</h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">VGA</p>
-                                    <h5>{{ $computerInformation->dataComputer->vga }}</h5>
+                                    <h5>{{ $dataComputer->vga }}</h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
                                 >
                                     <p class="mb-0 text-black-50">RAM / GB</p>
-                                    <h5>{{ $computerInformation->dataComputer->ram }}</h5>
+                                    <h5>{{ $dataComputer->ram }}</h5>
                                 </li>
                                 <li
                                     class="list-group-item d-flex align-items-center justify-content-between px-0 border-bottom"
@@ -90,16 +92,16 @@
                                     <p class="mb-0 text-black-50">
                                         Disk Size / GB
                                     </p>
-                                    <h5>{{ $computerInformation->dataComputer->disk_size }}</h5>
+                                    <h5>{{ $dataComputer->disk_size }}</h5>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col">
                         <img
-                            src="{{ asset('storage/data-computers/' . $computerInformation->dataComputer->image) }}"
+                            src="{{ asset('storage/data-computers/' . $dataComputer->image) }}"
                             class="img-thumbnail"
-                            alt={{ $computerInformation->dataComputer->image }}
+                            alt="{{ $dataComputer->image }}"
                         />
                     </div>
                 </div>

@@ -22,14 +22,10 @@ class DataSupportingDeviceRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'name'                       => ['required'],
-           'merk'                       => ['required'],
-           'model_or_type'              => ['required'],
-           'description'                => ['required'],
-           'amount'                     => ['required'],
-           'condition'                  => ['required'],
-           'date'                       => ['required'],
-           'description'                => ['required'],
+            'name'                  => ['required'],
+            'merk'                  => ['required'],
+            'model_or_type'         => ['required'],
+            'description'           => ['required'],
         ];
     }
 }

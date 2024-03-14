@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('supporting_device_information', function (Blueprint $table) {
+        Schema::create('laboratory_supporting_devices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('data_supporting_device_id')->constrained('data_supporting_devices')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('laboratory_room_id')->constrained('laboratory_rooms')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('laboratory_room_id')->constrained('laboratory_rooms');
             $table->string('supporting_device_number');
-            $table->integer('amount');
             $table->string('condition');
             $table->date('date');
             $table->text('description')->nullable();
+            $table->string('name');
+            $table->string('merk');
+            $table->string('model_or_type');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('supporting_device_information');
+        Schema::dropIfExists('laboratory_supporting_devices');
     }
 };

@@ -13,6 +13,13 @@ class LaboratoryRoomController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct()
+    {
+         $this->middleware('permission:laboratory-room-list', ['only' => ['index']]);
+         $this->middleware('permission:laboratory-room-create', ['only' => ['create','store']]);
+         $this->middleware('permission:laboratory-room-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:laboratory-room-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -23,11 +30,11 @@ class LaboratoryRoomController extends Controller
                 ->addColumn('action', function ($data) {
                     $id             = $data->id;
                     $url_edit       = route('laboratory-rooms.edit', $id);
-                    $url_show       = route('laboratoryComputer.index', $id);
+                    // $url_show       = route('laboratoryComputer.index', $id);
                     $url_delete     = route('laboratory-rooms.destroy', $id);
 
                     $edit     = '<a href="' . $url_edit . '" class="dropdown-item" data-toggle="tooltip" title="Edit" data-bs-placement="top">Edit Data</a>';
-                    $show    = '<a href="' . $url_show . '" class="dropdown-item" data-toggle="tooltip" title="Show" data-bs-placement="top">Show Data</a>';
+                    // $show    = '<a href="' . $url_show . '" class="dropdown-item" data-toggle="tooltip" title="Show" data-bs-placement="top">Show Data</a>';
                     $delete    = '<a href="javascript:void(0)" id="' . $id . '" data-id="' . $url_delete . '" class="dropdown-item btn-delete" data-toggle="tooltip" title="Delete" data-bs-placement="top">Delete Data</a>';
                     $button    = '<div class="dropup-center dropstart">
                 <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,7 +42,6 @@ class LaboratoryRoomController extends Controller
                 </button>
                 <ul class="dropdown-menu">
                   <li>' . $edit . '</li>
-                  <li>' . $show . '</li>
                   <li>' . $delete . '</li>
                 </ul>
               </div>';
@@ -67,9 +73,10 @@ class LaboratoryRoomController extends Controller
 
         LaboratoryRoom::create([
             'laboratory_number' => $idGenerator,
-            'name'      => $request->name
+            'name'      => $request->name,
+            'pic'      => $request->pic
         ]);
-        return redirect()->route('laboratory-rooms.index')->with('success', 'Create Data Success');
+        return redirect()->route('laboratory-rooms.index')->with('success', 'Data Saved Successfully');
     }
 
     /**
@@ -95,9 +102,10 @@ class LaboratoryRoomController extends Controller
     public function update(Request $request, LaboratoryRoom $laboratoryRoom)
     {
         $laboratoryRoom->update([
-            'name'      => $request->name
+            'name'      => $request->name,
+            'pic'      => $request->pic
         ]);
-        return redirect()->route('laboratory-rooms.index')->with('success', 'Update Data Success');
+        return redirect()->route('laboratory-rooms.index')->with('success', 'Data Update Successfully');
     }
 
     /**
@@ -105,7 +113,12 @@ class LaboratoryRoomController extends Controller
      */
     public function destroy(LaboratoryRoom $laboratoryRoom)
     {
-        //
+        $laboratoryRoom->delete();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Data Deleted Successfully'
+        ]);
     }
 
 }

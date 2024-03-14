@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ route('dataSupportingDevice.index', $laboratoryRoom->id) }}"
+                <a href="{{ route('data-supporting-devices.index') }}"
                     >Table: Data Supporting Devices</a
                 >
             </li>
@@ -38,17 +38,43 @@
             <p class="mb-0">Form to add data supporting devices.</p>
         </div>
         <div>
-            <a href="{{ route('dataSupportingDevice.index', $laboratoryRoom->id) }}" class="btn btn-danger"
+            <a
+                href="{{ route('data-supporting-devices.index') }}"
+                class="btn btn-danger"
                 ><i class="ri-arrow-left-line me-2"></i>Back</a
             >
         </div>
     </div>
 </div>
 
-<form action="{{ route('dataSupportingDevice.store', $laboratoryRoom->id) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @include('pages.dataSupportingDevices.__form')
-</form>
-    
-
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card border-0 shadow components-section">
+            <div class="card-body">
+                <form
+                    action="{{ route('data-supporting-devices.store') }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+                    @csrf
+                    @include('pages.dataSupportingDevices.__form')
+                    <div class="mt-3">
+                        <button
+                            class="btn btn-gray-600 mt-2 ms-2 animate-up-2 float-end"
+                            type="submit"
+                        >
+                            <i class="ri-send-plane-line me-1"></i> Save
+                        </button>
+                        <button
+                            class="btn btn-warning mt-2 animate-up-2 float-end"
+                            type="reset"
+                        >
+                            <i class="ri-refresh-line me-1"></i> Reset
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

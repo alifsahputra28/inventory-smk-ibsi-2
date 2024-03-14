@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DataComputerRequest extends FormRequest
+class LaboratoryComputerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,15 @@ class DataComputerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'merk'              => ['required'],
-            'model'             => ['required'],
-            'processor'         => ['required'],
-            'vga'               => ['required'],
-            'ram'               => ['required'],
-            'disk_size'         => ['required'],
-            'condition'         => ['required'],
-            'date'              => ['required'],
-            'description'       => ['nullable'],
+            'condition'      => ['required'],
+            'date'           => ['required'],
+            'description'    => ['required'],
+            'merk'           => ['required'],
+            'model'          => ['required'],
+            'model'          => ['required'],
+            'vga'            => ['required'],
+            'ram'            => ['required'],
+            'disk_size'      => ['required'],
         ];
     }
 }

@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main')
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -54,8 +56,9 @@
                     method="POST"
                     enctype="multipart/form-data"
                 >
-                    @csrf @method('PATCH')
-                 @include('pages.laboratoryRooms.__form')
+                    @csrf 
+                    @method('PATCH')
+                    @include('pages.laboratoryRooms.__form')
                     <div class="mt-3">
                         <button
                             class="btn btn-gray-600 mt-2 ms-2 animate-up-2 float-end"
