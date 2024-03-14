@@ -174,7 +174,8 @@ class LaboratoryComputerController extends Controller
     public function edit(LaboratoryComputer $laboratoryComputer)
     {
         $dataComputers = DataComputer::latest()->get();
-        return view('pages.laboratoryComputers.edit', compact('laboratoryComputer', 'dataComputers'));
+        $laboratoryComputerNumber = LaboratoryComputer::orderBy('id', 'DESC')->first()->computer_number;
+        return view('pages.laboratoryComputers.edit', compact('laboratoryComputer', 'dataComputers', 'laboratoryComputerNumber'));
     }
 
     /**

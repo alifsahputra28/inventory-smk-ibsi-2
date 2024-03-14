@@ -1,4 +1,6 @@
-@extends('layouts.main') @section('content')
+@extends('layouts.main') 
+
+@section('content')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">

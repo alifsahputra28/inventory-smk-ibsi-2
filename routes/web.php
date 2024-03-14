@@ -31,6 +31,7 @@ Route::get('/', function () {
 // Route::resource('users', UserController::class);
 
 Auth::routes();
+
 Route::get('/dashboard', function () {
     return view('pages.dashboard.index');
 });
