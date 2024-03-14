@@ -70,7 +70,7 @@ class DataSupportingDeviceController extends Controller
      */
     public function store(DataSupportingDeviceRequest $request)
     {
-        $image = $this->uploadImage($request, $path = 'public/data-supporting-devices/');
+        $image = $this->uploadImage($request, $path = 'public/images-data-supporting-devices/');
         DataSupportingDevice::create([
             'name'              => $request->name,
             'merk'              => $request->merk,
@@ -101,28 +101,32 @@ class DataSupportingDeviceController extends Controller
      * Update the specified resource in storage.
      */
     public function update(DataSupportingDeviceRequest $request, DataSupportingDevice $dataSupportingDevice)
-    {
-        $image = $this->uploadImage($request, $path = 'public/data-supporting-devices/');
-
-        if ($request->file('image')) {
-            Storage::disk('local')->delete('public/data-supporting-devices/' . basename($dataSupportingDevice->image));
-            $dataSupportingDevice->update([
-                'name'              => $request->name,
-                'merk'              => $request->merk,
-                'model_or_type'     => $request->model_or_type,
-                'description'       => $request->description,
-                'image'             => $image->hashName(),
-            ]);
-        }
-
+{
+    if ($request->hasFile('image')) {
+        $image = $this->uploadImage($request, 'public/images-data-supporting-devices/');
+        // Hapus gambar lama
+        Storage::disk('local')->delete('public/images-data-supporting-devices/' . basename($dataSupportingDevice->image));
+        // Update dengan gambar baru
+        $dataSupportingDevice->update([
+            'name'              => $request->name,
+            'merk'              => $request->merk,
+            'model_or_type'     => $request->model_or_type,
+            'description'       => $request->description,
+            'image'             => $image->hashName(),
+        ]);
+    } else {
+        // Jika tidak ada file gambar baru yang diunggah, update tanpa mengubah gambar
         $dataSupportingDevice->update([
             'name'              => $request->name,
             'merk'              => $request->merk,
             'model_or_type'     => $request->model_or_type,
             'description'       => $request->description,
         ]);
-        return redirect()->route('data-supporting-devices.index')->with('success', 'Data Update Successfully');
     }
+    
+    return redirect()->route('data-supporting-devices.index')->with('success', 'Data Update Successfully');
+}
+
 
     /**
      * Remove the specified resource from storage.

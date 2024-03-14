@@ -123,17 +123,6 @@
                                               Remember me
                                           </label>
                                       </div>
-                                      <div>
-                                          @if (Route::has('password.request'))
-                                            <a
-                                                href="{{
-                                                    route('password.request')
-                                                }}"
-                                                class="small text-right"
-                                                >Lost password?</a
-                                            >
-                                          @endif
-                                      </div>
                                   </div>
                               </div>
                               <div class="d-grid">
@@ -142,22 +131,6 @@
                                   </button>
                               </div>
                           </form>
-                          <div
-                              class="d-flex justify-content-center align-items-center mt-4"
-                          >
-                              @guest 
-                                @if (Route::has('register'))
-                                  <span class="fw-normal">
-                                      Not registered?
-                                      <a
-                                          href="{{ route('register') }}"
-                                          class="fw-bold"
-                                          >Create account</a
-                                      >
-                                  </span>
-                                @endif
-                              @endguest
-                          </div>
                       </div>
                   </div>
               </div>

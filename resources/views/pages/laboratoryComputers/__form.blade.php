@@ -167,8 +167,16 @@
                             value="Good">Good
                         </option>
                         <option {{ $laboratoryComputer->
-                            condition === 'Good Enough' ? 'selected' : '' }}
-                            value="Good Enough">Good Enough
+                            condition === 'Enough' ? 'selected' : '' }}
+                            value="Enough">Enough
+                        </option>
+                        <option {{ $laboratoryComputer->
+                            condition === 'Outdated' ? 'selected' : '' }}
+                            value="Outdated">Outdated
+                        </option>
+                        <option {{ $laboratoryComputer->
+                            condition === 'Lost' ? 'selected' : '' }}
+                            value="Lost">Lost
                         </option>
                     </select>
                 </div>

@@ -71,7 +71,7 @@ class DataComputerController extends Controller
      */
     public function store(DataComputersRequest $request)
     {
-        $image = $this->uploadImage($request, $path = 'public/data-computers/');
+        $image = $this->uploadImage($request, $path = 'public/images-data-computers/');
         // dd($image);
 
         DataComputer::create([

@@ -41,25 +41,25 @@
                 <a
                     href="{{ route('laboratory-supporting-devices.create', ['laboratory_room' => $laboratoryRoomsId]) }}"
                     class="btn btn-primary"
-                    >Add Lab Computers</a
+                    >Add Laboratory Supporting Device</a
                 >
                 @elseif(Auth::user()->can('Lab Akuntansi'))
                 <a
                     href="{{ route('laboratory-supporting-devices.create', ['laboratory_room' => $laboratoryRoomsId]) }}"
                     class="btn btn-primary"
-                    >Add Lab Computers</a
+                    >Add Laboratory Supporting Device</a
                 >
                 @elseif(Auth::user()->can('Lab Administrasi Perkantoran'))
                 <a
                     href="{{ route('laboratory-supporting-devices.create', ['laboratory_room' => $laboratoryRoomsId]) }}"
                     class="btn btn-primary"
-                    >Add Lab Computers</a
+                    >Add Laboratory Supporting Device</a
                 >
                 @elseif(Auth::user()->can('Lab Pemasaran'))
                 <a
                     href="{{ route('laboratory-supporting-devices.create', ['laboratory_room' => $laboratoryRoomsId]) }}"
                     class="btn btn-primary"
-                    >Add Lab Computers</a
+                    >Add Laboratory Supporting Device</a
                 >
                 @else
                 <button
@@ -68,7 +68,7 @@
                     data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop"
                 >
-                    Add Lab Support Devices
+                    Add Laboratory Supporting Device
                 </button>
                 @endif
             </div>
@@ -133,6 +133,7 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th class="text-center">Name</th>
+                            <th class="text-center">Supporting Device Number</th>
                             <th class="text-center">Merk</th>
                             <th class="text-center">Model/Type</th>
                             <th class="text-center">Condition</th>
@@ -237,6 +238,7 @@
                     },
                     { data: "name", name: "name" },
                     { data: "merk", name: "merk" },
+                    { data: "supporting_device_number", name: "supporting_device_number" },
                     { data: "model_or_type", name: "model_or_type" },
                     { data: "condition", name: "condition" },
                     { data: "date", name: "date" },

@@ -141,7 +141,7 @@ class LaboratorySupportingDeviceController extends Controller
     {
         $dataSupportingDevices = DataSupportingDevice::latest()->get();
         $laboratorySupportingDevice = new LaboratorySupportingDevice();
-        $laboratorySupportingDeviceNumber =  null;
+        $laboratorySupportingDeviceNumber =  LaboratorySupportingDevice::orderBy('id', 'DESC')->first()->supporting_device_number;
         // dd($laboratorySupportingDeviceNumber);
         return view('pages.laboratorySupportingDevices.create', compact('laboratoryRoom', 'dataSupportingDevices', 'laboratorySupportingDevice', 'laboratorySupportingDeviceNumber'));
     }
@@ -182,7 +182,8 @@ class LaboratorySupportingDeviceController extends Controller
     public function edit(LaboratorySupportingDevice $laboratorySupportingDevice)
     {
         $dataSupportingDevices = DataSupportingDevice::latest()->get();
-        return view('pages.laboratorySupportingDevices.edit', compact('dataSupportingDevices', 'laboratorySupportingDevice'));
+        $laboratorySupportingDeviceNumber =  LaboratorySupportingDevice::orderBy('id', 'DESC')->first()->supporting_device_number;
+        return view('pages.laboratorySupportingDevices.edit', compact('dataSupportingDevices', 'laboratorySupportingDevice', 'laboratorySupportingDeviceNumber'));
     }
 
     /**
