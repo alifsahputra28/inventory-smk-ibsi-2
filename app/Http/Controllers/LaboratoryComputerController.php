@@ -13,9 +13,13 @@ use Yajra\DataTables\DataTables;
 
 class LaboratoryComputerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    function __construct()
+    {
+         $this->middleware('permission:laboratory-computer-list', ['only' => ['index']]);
+         $this->middleware('permission:laboratory-computer-create', ['only' => ['create','store']]);
+         $this->middleware('permission:laboratory-computer-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:laboratory-computer-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -174,7 +178,8 @@ class LaboratoryComputerController extends Controller
     public function edit(LaboratoryComputer $laboratoryComputer)
     {
         $dataComputers = DataComputer::latest()->get();
-        return view('pages.laboratoryComputers.edit', compact('laboratoryComputer', 'dataComputers'));
+        $laboratoryComputerNumber =  LaboratoryComputer::orderBy('id', 'DESC')->first()->computer_number;
+        return view('pages.laboratoryComputers.edit', compact('laboratoryComputer', 'dataComputers', 'laboratoryComputerNumber'));
     }
 
     /**

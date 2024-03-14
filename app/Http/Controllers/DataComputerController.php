@@ -15,6 +15,13 @@ class DataComputerController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct()
+    {
+         $this->middleware('permission:data-computer-list', ['only' => ['index']]);
+         $this->middleware('permission:data-computer-create', ['only' => ['create','store']]);
+         $this->middleware('permission:data-computer-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:data-computer-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         if ($request->ajax()) {

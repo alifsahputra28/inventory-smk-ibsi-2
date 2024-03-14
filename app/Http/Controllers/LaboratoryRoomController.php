@@ -13,6 +13,13 @@ class LaboratoryRoomController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct()
+    {
+         $this->middleware('permission:laboratory-room-list', ['only' => ['index']]);
+         $this->middleware('permission:laboratory-room-create', ['only' => ['create','store']]);
+         $this->middleware('permission:laboratory-room-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:laboratory-room-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         if ($request->ajax()) {
